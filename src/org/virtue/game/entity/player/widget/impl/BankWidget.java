@@ -68,20 +68,14 @@ public class BankWidget extends Widget {
 		player.getDispatcher().sendVarc(1324, 3);//Email registration status (this gives more f2p bank slots)
 		player.getDispatcher().sendCS2Script(8862, 0, 2);
 		player.getDispatcher().sendCS2Script(8862, 0, 3);
-		player.getDispatcher().sendWidgetSettings(762, 128, 0, 18, 15302654);
-		player.getDispatcher().sendWidgetSettings(762, 7, 0, 27, 14682110);
-		player.getDispatcher().sendWidgetSettings(762, 215, 0, 1121, 11011582);
-		player.getDispatcher().sendWidgetSettings(762, 272, 0, 1121, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 253, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 254, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 255, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 256, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 257, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 258, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 259, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 260, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 261, 0, 1, 2097152);
-		player.getDispatcher().sendWidgetSettings(762, 262, 0, 1, 2097152);
+		player.getDispatcher().sendWidgetSettings(762, 137, 0, 18, 15302654);
+		player.getDispatcher().sendWidgetSettings(762, 10, 0, 27, 14682110);
+
+		player.getDispatcher().sendWidgetSettings(762, 243, 0, 1121, 11011582);
+		player.getDispatcher().sendWidgetSettings(762, 300, 0, 1121, 2097152);
+
+		for(int i=0; i < 10; i++)
+			player.getDispatcher().sendWidgetSettings(762, 300+i, 0, 1, 2097152);
 		player.getDispatcher().sendVarc(95, 0);//Clear the "Eat" option...
 	}
 	
@@ -118,12 +112,13 @@ public class BankWidget extends Widget {
 	 */
 	@Override
 	public boolean click(int widgetId, int componentId, int slot, int itemId, Player player, OptionButton option) {
+		System.out.println("click::" + widgetId + "," + componentId + ", " + slot + "," + itemId + "," + player + "," + option.getId());
 		int amount = 0;
 		Item item;
 		switch (componentId) {
 		case 303://Close button
 			return true;
-		case 215://Withdraw
+		case 243://Withdraw
 			item = player.getInvs().getContainer(ContainerState.BANK).get(slot);
 			if (item == null) {
 				//The client inventory must not be synchronised, so let's send it again
@@ -165,7 +160,7 @@ public class BankWidget extends Widget {
 				withdrawItems(player, slot, itemId, amount);
 			}
 			return true;
-		case 7://Deposit
+		case 10://Deposit
 			item = player.getInvs().getContainer(ContainerState.BACKPACK).get(slot);
 			if (item == null) {
 				//The client inventory must not be synchronised, so let's send it again
@@ -206,20 +201,20 @@ public class BankWidget extends Widget {
 				depositItems(player, slot, itemId, amount);
 			}
 			return true;
-		case 83://Deposit all backpack
+		case 91://Deposit all backpack
 			depositBackpack(player);
 			return true;
-		case 91://Deposit all worn
+		case 99://Deposit all worn
 			depositWorn(player);
 			return true;
-		case 61://Switch between note/toggle mode
+		case 64://Switch between note/toggle mode
 			boolean note = player.getVars().getVarValueInt(VarKey.Player.BANK_NOTE_WITHDRAW) == 1;
 			player.getVars().setVarValueInt(VarKey.Player.BANK_NOTE_WITHDRAW, note ? 0 : 1);
 			return true;
-		case 107://Deposit all money pouch
+		case 115://Deposit all money pouch
 			depositMoneyPouch(player);
 			return true;
-		case 140://Bank tab 1
+		case 140://Bank tab 1 //TODO verify...
 			return handleTabAction(player, 1, option);
 		case 148://Bank tab 2
 			return handleTabAction(player, 2, option);
@@ -240,7 +235,7 @@ public class BankWidget extends Widget {
 		case 21://Search
 			player.getVars().setVarValueInt(VarKey.Bit.SELECTED_BANK_TAB, 0);
 			return false;
-		case 99://Deposit all familiar
+		case 107://Deposit all familiar
 		default:
 			logger.info("Unhandled bank click: interface="+widgetId+", component="+componentId+", slot="+slot+", item="+itemId+", option="+option);
 			break;
@@ -264,10 +259,11 @@ public class BankWidget extends Widget {
 	 */
 	@Override
 	public boolean drag (int widget1, int component1, int slot1, int itemID1, int widget2, int component2, int slot2, int itemID2, Player player) {
+		System.out.println("drag("+widget1+","+component1+","+slot1+","+itemID1+","+widget2+","+component2+","+slot2+","+itemID2+","+player);
 		if (widget1 != widget2 || widget1 != WidgetState.BANK_WIDGET.getID()) {
 			return false;
 		}
-		if (component1 == 215) {//Shifted item in the bank
+		if (component1 == 243) {//Shifted item in the bank
 			ItemContainer bank = player.getInvs().getContainer(ContainerState.BANK);
 			Item item = bank.get(slot1);
 			int actualID1 = (item == null) ? -1 : item.getId();
@@ -279,7 +275,7 @@ public class BankWidget extends Widget {
 				return false;//Item does not exist
 			}
 			switch (component2) {
-			case 215://Swapped items				
+			case 243://Swapped items
 				Item item2 = bank.get(slot2);
 				int actualID2 = (item2 == null) ? -1 : item2.getId();
 				if (item2 == null || actualID2 != itemID1) {
@@ -290,7 +286,7 @@ public class BankWidget extends Widget {
 				bank.set(slot1, item2);			
 				player.getInvs().updateContainer(ContainerState.BANK, slot1, slot2);
 				return true;
-			case 272://Insert item
+			case 272://Insert item //TODO verify?
 				if (slot2 == -1 || slot2 > bank.getFreeSlot()) {
 					return false;
 				}				
@@ -302,44 +298,44 @@ public class BankWidget extends Widget {
 				incrementTab(player, getTab(player, slot1), -1);
 				player.getInvs().sendContainer(ContainerState.BANK);
 				return true;
-			case 253://Last position in tab 1
-			case 140://Dragged to tab 1
+			case 253://Last position in tab 1 //TODO verify?
+			case 140://Dragged to tab 1 //TODO verify?
 				bank.shiftItem(slot1, bank.getFreeSlot()-1);
 				player.getInvs().sendContainer(ContainerState.BANK);
 				incrementTab(player, getTab(player, slot1), -1);
 				return true;
-			case 254://Last position in tab 2
-			case 148://Dragged to tab 2
+			case 254://Last position in tab 2 //TODO verify?
+			case 148://Dragged to tab 2 //TODO verify?
 				moveToTab(player, slot1, 2);
 				return true;
-			case 255://Last position in tab 3
-			case 156://Dragged to tab 3
+			case 255://Last position in tab 3 //TODO verify?
+			case 156://Dragged to tab 3 //TODO verify?
 				moveToTab(player, slot1, 3);
 				return true;
-			case 256://Last position in tab 4
-			case 164://Dragged to tab 4
+			case 256://Last position in tab 4 //TODO verify?
+			case 164://Dragged to tab 4 //TODO verify?
 				moveToTab(player, slot1, 4);
 				return true;
-			case 257://Last position in tab 5
-			case 172://Dragged to tab 5
+			case 257://Last position in tab 5 //TODO verify?
+			case 172://Dragged to tab 5 //TODO verify?
 				moveToTab(player, slot1, 5);
 				return true;
 			case 258://Last position in tab 6
 			case 180://Dragged to tab 6
 				moveToTab(player, slot1, 6);
-				return true;
+				return true; //TODO verify?
 			case 259://Last position in tab 7
 			case 188://Dragged to tab 7
 				moveToTab(player, slot1, 7);
-				return true;
+				return true; //TODO verify?
 			case 260://Last position in tab 8
 			case 196://Dragged to tab 8
 				moveToTab(player, slot1, 8);
-				return true;
+				return true; //TODO verify?
 			case 261://Last position in tab 9
 			case 204://Dragged to tab 9
 				moveToTab(player, slot1, 9);
-				return true;
+				return true; //TODO verify?
 			default:
 				return false;
 			}

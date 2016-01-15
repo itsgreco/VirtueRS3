@@ -141,7 +141,7 @@ public class Virtue {
 	private AccountIndex accountIndex;
 	
 	/**
-	 * The {@link PacketRepository} Instance
+	 * The {@link EventRepository} Instance
 	 */
 	private EventRepository event;
 	
