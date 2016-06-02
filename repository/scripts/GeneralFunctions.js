@@ -318,13 +318,12 @@ function chatobj (player, obj, message, callback) {
 			}			
 		}
 	});
-	if (typeof(npc) !== "number") {
+	if (typeof(obj) !== "number") {
 		obj = api.getId(obj);
 	}
-	api.setWidgetText(player, 1184, 11, configApi.objName(obj));
-	api.setWidgetObject(player, 1184, 2, obj, 1);
-	api.setWidgetText(player, 1184, 9, message);	
-	api.openOverlaySub(player, 1006, 1184, false);
+	api.setWidgetObject(player, 1189, 8, obj, 1);
+	api.setWidgetText(player, 1189, 2, message);	
+	api.openOverlaySub(player, 1006, 1189, false);
 	api.setInputHandler(player, new Handler());
 }
 
