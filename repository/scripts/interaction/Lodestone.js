@@ -32,12 +32,12 @@ var LodestoneType = {
 	BANDIT_CAMP : {
 		base : 69827,
 		coords : api.getCoords(3214, 2955, 0),
-		varbit : -1
+		varbit : 9482
 	},
 	LUNAR_ISLE : {
 		base : 69828,
 		coords : api.getCoords(2085, 3915, 0),
-		varbit : -1
+		varbit : 10236
 	},
 	AL_KHARID : {
 		base : 69829,
@@ -157,8 +157,15 @@ var LodestoneListener = Java.extend(Java.type('org.virtue.engine.script.listener
 		
 		var lodestone = Lodestones.getById(locTypeId);
 		var transformed = api.getLocType(player, lodestone.base);
-		if (lodestone.varbit == -1) {
-			api.sendMessage(player, "Unhandled lodestone activation for "+transformed.name+" - varpbit has not been found yet.");
+		if (lodestone.varbit == 9482) {	
+		api.setVarBit(player, lodestone.varbit, 15);
+			api.sendMessage(player, "You have activated the "+transformed.name+".");
+			
+		    } else if (lodestone.varbit == 10236) {	//lunar isle lodestone
+		api.setVarBit(player, lodestone.varbit, 190);
+			api.sendMessage(player, "You have activated the "+transformed.name+".");
+			
+			
 		} else {
 			api.setVarBit(player, lodestone.varbit, 1);
 			api.sendMessage(player, "You have activated the "+transformed.name+".");
@@ -298,8 +305,7 @@ var Lodestones = {
 				api.setSpotAnim(player, 1, 3018);
 				runAnimation(player, 16386, function () {//The landing animation
 					runAnimation(player, 16393, function () {//The post-landing movement
-						//Corrects the player's tile (otherwise it resets after about 10 seconds)
-						//FIXME: This makes the player 'jump' by one coordinate 
+					api.runAnimation(player, -1); 
 						api.teleportEntity(player, landSpot);						
 					});
 				});
@@ -307,7 +313,7 @@ var Lodestones = {
 		},
 		
 		getById : function (id) {
-			for (var ordial in Lodestone) {
+			for (var ordial in LodestoneType) {
 				if (LodestoneType[ordial].base == id) {
 					return LodestoneType[ordial];
 				}

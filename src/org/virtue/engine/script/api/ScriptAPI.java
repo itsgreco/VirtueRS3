@@ -396,6 +396,11 @@ public interface ScriptAPI {
 	 * @return The name
 	 */
 	public String getItemName(Item item);
+        
+        
+        
+        public String getDestroy(int itemId);
+        public String getDestroy(Item item);
 		
 	/**
 	 * Gets the description (examine text) for the given item

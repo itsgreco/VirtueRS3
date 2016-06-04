@@ -96,10 +96,30 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
 		var player = args.player;
 		var slot = args.fromslot;
 		var item = api.getItem(player, Inv.BACKPACK, slot);
+		var opString;
 		if (item == null) {
 			api.sendInv(player, Inv.BACKPACK);//Client backpack is out of sync; re-synchronise it
 			return;
 		}
+		
+		
+		if (args.tointerface = 1477) {
+		     Backpack.dropItem(player, item, slot);
+		     } else if (opString == "Destroy") {
+		     Backpack.destroyItem(player, item, slot);
+		     } else if (opString == "Discard") {
+		     Backpack.discardItem(player, item, slot);
+                     } else{
+                     api.sendMessage(player, "error tell admin");
+                     }
+		     return;
+                }  
+                
+		}
+		
+		
+		
+		
 		if (args.tointerface != 1473) {//Item dragged somewhere other than backpack
 			api.sendMessage(player, "Unhandled backpack item drag: srcItem="+item+", destInterface="+args.tointerface+", destComp="+args.tocomponent);
 			return;
@@ -222,10 +242,15 @@ var Backpack = {
 		},
 		
 		destroyItem : function (player, item, slot) {
-			//Are you sure you want to destroy this object?
-			//You can get a new one from....
-			api.sendMessage(player, "Destroyed item: "+api.getId(item));
-			api.setInvSlot(player, Inv.BACKPACK, slot, null);
+			api.setWidgetText(player, 1183, 4, api.getItemName(item));
+			api.setWidgetText(player, 1183, 9, api.getDestroy(item));
+		    api.setWidgetObject(player, 1183, 10, api.getId(item), 1);
+			api.setWidgetText(player, 1183, 12, "Are you sure you want to destroy this object?");
+			api.openOverlaySub(player, 1006, 1183, false);
+			//api.sendMessage(player, "Destroyed item: "+api.getId(item));
+            //api.setInvSlot(player, Inv.BACKPACK, slot, null);
+     
+                        
 		},
 		
 		discardItem : function (player, item, slot) {
@@ -303,7 +328,7 @@ var Backpack = {
 					&& (opString == "Drop" || opString == "Destroy" || opString == "Discard")) {
 				if (opString == "Drop") {
 					this.dropItem(player, item, slot);
-				} else if ("Destroy".equalsIgnoreCase(text)) {
+				} else if ("Destroy") {
 					this.destroyItem(player, item, slot);
 				} else if (opString == "Discard") {
 					this.discardItem(player, item, slot);

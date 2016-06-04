@@ -33,7 +33,6 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
@@ -64,6 +63,7 @@ import org.virtue.game.parser.AccountIndex;
 import org.virtue.game.parser.CachingParser;
 import org.virtue.game.parser.ClanIndex;
 import org.virtue.game.parser.ParserRepository;
+import org.virtue.game.parser.impl.ItemDestroyParser;
 import org.virtue.game.parser.impl.NewsDataParser;
 import org.virtue.game.parser.impl.NpcDropParser;
 import org.virtue.game.parser.impl.NpcSpawnParser;
@@ -314,7 +314,7 @@ public class Virtue {
 
 		String newsDataFile = getProperty("news.file", "repository/news.json");
 		NewsDataParser.loadJsonNewsData(FileUtility.parseFilePath(newsDataFile));
-		
+		ItemDestroyParser.init();
 		SpecialAttackHandler.init();
 		ActionBar.init();
 		AbstractNPC.init();

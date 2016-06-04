@@ -25,7 +25,6 @@ import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.virtue.ConfigProvider;
@@ -70,6 +69,7 @@ import org.virtue.game.node.Node;
 import org.virtue.game.node.ServerNode;
 import org.virtue.game.parser.AccountIndex;
 import org.virtue.game.parser.AccountInfo;
+import org.virtue.game.parser.impl.ItemDestroyParser;
 import org.virtue.game.world.region.GroundItem;
 import org.virtue.game.world.region.Region;
 import org.virtue.game.world.region.SceneLocation;
@@ -103,6 +103,13 @@ public class VirtueScriptAPI implements ScriptAPI {
 	
 	public VirtueScriptAPI (ConfigProvider configProvider) {
 		this.configProvider = configProvider;
+	}
+        
+        public String getDestroy(int itemId) {
+		return getItemType(itemId).name;
+	}
+        public String getDestroy(Item item) {
+		return ItemDestroyParser.getDestroy(item);
 	}
 
 	/* (non-Javadoc)
@@ -594,6 +601,9 @@ public class VirtueScriptAPI implements ScriptAPI {
 	public String getItemName(Item item) {
 		return item.getType().name;
 	}
+        
+        
+        
 
 	/* (non-Javadoc)
 	 * @see org.virtue.engine.script.api.ScriptAPI#getItemDesc(int)

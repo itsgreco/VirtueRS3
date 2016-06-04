@@ -91,17 +91,17 @@ var RottenPotato = {
 		},
 		handleEatOption : function (player) {
 			multi5(player, "Eat", "Transform me", function () {
-				player.getAppearance().setRender(Render.NPC);
-				player.getAppearance().setNPCId(49);
-				player.getAppearance().refresh();
+				player.getModel().setRender(Render.NPC);
+				player.getModel().setNPCId(49);
+				player.getModel().refresh();
 			}, "Change me back.", function () {
-				player.getAppearance().setRender(Render.PLAYER);
-				player.getAppearance().refresh();
+				player.getModel().setRender(Render.PLAYER);
+				player.getModel().refresh();
 			}, "Wipe inventory", function () {
 				api.emptyInv(player, Inv.BACKPACK);
 			}, "Invisible mode", function () {
-				player.getAppearance().setRender(Render.INVISIBLE);
-				player.getAppearance().refresh();
+				player.getModel().setRender(Render.INVISIBLE);
+				player.getModel().refresh();
 			}, "Spawn aggressive NPC", function () {
 				var npc = api.createNpc(90, api.getCoords(player));
 				api.spawnNpc(npc);
