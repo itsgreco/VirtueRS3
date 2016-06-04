@@ -96,6 +96,7 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
 		var player = args.player;
 		var slot = args.fromslot;
 		var item = api.getItem(player, Inv.BACKPACK, slot);
+        var itemId = api.getId(item);
 		var opString;
 		if (item == null) {
 			api.sendInv(player, Inv.BACKPACK);//Client backpack is out of sync; re-synchronise it
@@ -104,6 +105,10 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
 		
 		
 		if (args.tointerface = 1477) {
+          switch (args.tocomponent) {
+             case 13: 
+             opString = configApi.objIop(itemId, 5);
+             if (opString == "Drop") {
 		     Backpack.dropItem(player, item, slot);
 		     } else if (opString == "Destroy") {
 		     Backpack.destroyItem(player, item, slot);
@@ -114,6 +119,7 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
                      }
 		     return;
                 }  
+              return ;   
                 
 		}
 		
