@@ -243,6 +243,30 @@ function requestTool (player, message, tools, callback) {
 	api.setInputHandler(player, new Handler());
 }
 
+
+function destroyItem (player, item, slot, onConfirm) {
+	var Handler = Java.extend(Java.type('org.virtue.game.content.dialogues.InputEnteredHandler'), {
+		handle : function (value) {
+			if (value == 281470759272454) {
+				onConfirm();
+			}        
+		}
+	});	
+        
+                        api.setWidgetText(player, 1183, 4, api.getItemName(item));
+			api.setWidgetText(player, 1183, 9, api.getDestroy(item));
+		        api.setWidgetObject(player, 1183, 10, api.getId(item), 1);
+			api.setWidgetText(player, 1183, 12, "Are you sure you want to destroy this object?");
+                       // api.hideWidget(player, 1186, 8, true);//all button
+			api.openOverlaySub(player, 1006, 1183, false);
+                        api.setInputHandler(player, new Handler());
+                        
+
+}
+
+
+
+
 function requestConfirm (player, message, onConfirm) {
 	var Handler = Java.extend(Java.type('org.virtue.game.content.dialogues.InputEnteredHandler'), {
 		handle : function (value) {
@@ -295,7 +319,9 @@ function chatplayer (player, message, callback) {
 	api.setInputHandler(player, new Handler());
 }
 
-function chatnpc (player, npc, message, callback) {
+
+
+function chatnpc (player, npc, emoteName, message, callback) {
 	var Handler = Java.extend(Java.type('org.virtue.game.content.dialogues.InputEnteredHandler'), {
 		handle : function (value) {
 			if (callback !== undefined) {
@@ -306,7 +332,7 @@ function chatnpc (player, npc, message, callback) {
 	if (typeof(npc) !== "number") {
 		npc = api.getId(npc);
 	}
-	player.getDialogs().sendNpcChat(message, npc);
+	player.getDialogs().sendNpcChat(message, npc, emoteName);
 	api.setInputHandler(player, new Handler());
 }
 
