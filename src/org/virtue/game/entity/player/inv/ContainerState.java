@@ -38,6 +38,35 @@ public enum ContainerState {
 	FALADOR_GEN_STORE(13, true, false),
 	LOST_CITY_DRAGON_SHOP(36, true, false),
 	HEROES_QUEST_DRAGON_SHOP(45, true, false),
+	POLYPORE_SHOP(622, true, false),
+	GNOME_SHOPKEEPERS_ARMOURY_SHOP(655, true, false),
+	GNOME_FREE_SHOP(657, true, false),
+	ADDY_WEAPON_SHOP(121, true, false),
+	GAIUS_TWOHANDED_SHOP(39, true, false),
+	DEALGAS_SHOP(579, true, false),
+	DAGAS_SHOP(251, true, false),
+	SEDDU_SHOP(344, true, false),
+	MARTIN_THWAITS_LOST_N_FOUND(455, true, false),
+	MAMI_RIMBA(663, true, false),
+	SLAYER_SHOP_1(633, true, false),
+	SPIKED_GAUNTLETS_SLAYER(634, true, false),
+	NURMOFS_PICKAXE_SHOP(68, true, false),
+	LOUIS_ARMOURED_LEGS(12, true, false),
+	RANAELS_SUPER_SKIRT_STORE(16, true, false),
+	DOMMIKS_CRAFTING_STORE_P2P(27, true, false),
+	VALAINES_SHOP_OF_CHAMPIONS(18, true, false),
+	JATIXS_HERBLORE_SHOP(40, true, false),
+	SCAVVOS_RUNE_STORE(33, true, false),
+	OZIACHS_ARMOUR(35, true, false),
+	NAFF_KNOCKOFF_STAVES(744, true, false),
+	IFFIE_CUSTOME_SHOP_MALE(683, true, false),
+	IFFIE_CUSTOME_SHOP_FEMALE(684, true, false),
+	ALISON_ELMSHAPERS_FLETCH_SHOP(658, true, false),
+	CULINAROMANCER_CHEST_FOOD(365, true, false),
+	
+	
+	
+	
 	
 	/**
 	 * The player's current trade offer. Also used for the price checker screen.

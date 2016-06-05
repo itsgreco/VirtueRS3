@@ -248,14 +248,9 @@ var Backpack = {
 		},
 		
 		destroyItem : function (player, item, slot) {
-			api.setWidgetText(player, 1183, 4, api.getItemName(item));
-			api.setWidgetText(player, 1183, 9, api.getDestroy(item));
-		    api.setWidgetObject(player, 1183, 10, api.getId(item), 1);
-			api.setWidgetText(player, 1183, 12, "Are you sure you want to destroy this object?");
-			api.openOverlaySub(player, 1006, 1183, false);
-			//api.sendMessage(player, "Destroyed item: "+api.getId(item));
-            //api.setInvSlot(player, Inv.BACKPACK, slot, null);
-     
+			destroyItem(player, item, slot, function () {
+			api.setInvSlot(player, Inv.BACKPACK, slot, null);
+			});  
                         
 		},
 		

@@ -148,6 +148,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			case 65082:
 			case 65079:
 			case 65077:
+			case 65076:
 				if(api.getCoordY(player) == 3520) {
 					api.runAnimation(player, 6132);
 					api.teleportEntityBy(player, 0, 3, 0);
@@ -162,7 +163,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
 	var locs = [ 77834, 1817, 14304, 14305, 14306, 14307, 68134, 68135, 65084,
-					68223, 9356, 65086, 65082, 65079, 65077, 38698, 20604, 20602, 79061, 79041, 79042, 79043,
+					68223, 9356, 65086, 65082, 65079, 65077, 65076, 38698, 20604, 20602, 79061, 79041, 79042, 79043,
 					1804, 12389, 29335 ];
 	var listener = new LocationListener();
 	for (var i in locs) {

@@ -94,20 +94,28 @@ var StairsListener = Java.extend(Java.type('org.virtue.engine.script.listeners.E
 		case 36778://North Lumbridge castle stairs - Level 2
 			api.teleportEntityBy(player, 0, 0, -1);
 			return;
-		case 45481://Lumbridge general store - Ground
+		case 45481:
 			if (api.getCoordX(args.location) == 3215 && api.getCoordY(args.location) == 3239) {
 				api.teleportEntity(player, 3214, 3239, 1);
 			} else if (api.getCoordX(args.location) == 3200 && api.getCoordY(args.location) == 3243) {
 				api.teleportEntity(player, 3200, 3242, 1);
+			} else if (api.getCoordX(args.location) == 3193 && api.getCoordY(args.location) == 3255) {
+				api.teleportEntity(player, 3195, 3255, 1);
+			} else if (api.getCoordX(args.location) == 3225 && api.getCoordY(args.location) == 3265) {
+				api.teleportEntity(player, 3225, 3264, 1);
 			} else {
 				api.sendMessage(player, "Unhandled stairs: "+args.location);
 			}
 			return;
-		case 45482://Lumbridge general store - Level 1
+		case 45482:
 			if (api.getCoordX(args.location) == 3215 && api.getCoordY(args.location) == 3239) {
 				api.teleportEntity(player, 3217, 3239, 0);
 			} else if (api.getCoordX(args.location) == 3200 && api.getCoordY(args.location) == 3243) {
 				api.teleportEntity(player, 3200, 3245, 0);
+			} else if (api.getCoordX(args.location) == 3193 && api.getCoordY(args.location) == 3255) {
+				api.teleportEntity(player, 3192, 3255, 0);
+			} else if (api.getCoordX(args.location) == 3225 && api.getCoordY(args.location) == 3265) {
+				api.teleportEntity(player, 3225, 3267, 0);
 			} else {
 				api.sendMessage(player, "Unhandled stairs: "+args.location);
 			}
@@ -161,7 +169,7 @@ var listen = function(scriptManager) {
 		scriptManager.registerListener(EventType.OPLOC3, ids[i], stairsMiddleListener);		
 	}
 	
-	ids = [ 36773, 36775, 36776, 36778, 45481 ];
+	ids = [ 36773, 36775, 36776, 36778, 45481,45482 ];
 	var stairsListener = new StairsListener();
 	for (var i in ids) {
 		scriptManager.registerListener(EventType.OPLOC1, ids[i], stairsListener);

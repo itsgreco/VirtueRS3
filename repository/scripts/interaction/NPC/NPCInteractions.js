@@ -34,16 +34,16 @@ var HansListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		var player = args.player;
 		var npc = args.npc;
 		if (event == EventType.OPNPC1) {
-			chatnpc(player, npc, "Hello. What are you doing here?");
+			 chatnpc(player, npc, "NEUTRAL", "Hello. What are you doing here?");
 		} else if (event == EventType.OPNPC3) {
-			chatnpc(player, npc, "Would you like to purchase a cape?");
+			 chatnpc(player, npc, "NEUTRAL", "Would you like to purchase a cape?");
 		}
 	}
 });
 
 var ThessaliaListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, npcTypeId, args) {
-		chatnpc(player, npc, "Would you like to buy any fine clothes?");
+		 chatnpc(player, npc, "NEUTRAL", "Would you like to buy any fine clothes?");
 	}
 });
 
@@ -52,7 +52,7 @@ var NastrothListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		var player = args.player;
 		var npc = args.npc;
 		if (api.freeSpaceTotal(player, Inv.BACKPACK) < 28) {
-			chatnpc(player, npc, "Sorry! I cannot give you any item's if you have something in your inventory already. You must have atleast 28 empty inventory slots. Come talk to me later.");
+			 chatnpc(player, npc, "NEUTRAL", "Sorry! I cannot give you any item's if you have something in your inventory already. You must have atleast 28 empty inventory slots. Come talk to me later.");
 			return;
 		}
 		api.addCarriedItem(player, 995, 100000);
@@ -66,7 +66,7 @@ var NastrothListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		api.addCarriedItem(player, 4131, 1);
 		api.addCarriedItem(player, 6570, 1);
 		api.addCarriedItem(player, 7462, 1);
-		chatnpc(player, npc, "Here you go! Enjoy your starter kit.");
+		 chatnpc(player, npc, "NEUTRAL", "Here you go! Enjoy your starter kit.");
 	}
 });
 
@@ -74,7 +74,7 @@ var LadyDeathknellListener = Java.extend(Java.type('org.virtue.engine.script.lis
 	invoke : function (event, npcTypeId, args) {
 		var player = args.player;
 		var npc = args.npc;
-		chatnpc(player, npc, "You can start your journey by picking one of the starter set's beside the bank chest.");
+		 chatnpc(player, npc, "NEUTRAL", "You can start your journey by picking one of the starter set's beside the bank chest.");
 		api.runAnimation(npc, 21985);
 	}
 });

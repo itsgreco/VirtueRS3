@@ -39,7 +39,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		}
 		
 		switch (locTypeId) {
-			case 75852:
+			case 75852://Trapdoor old xmas event
 			//todo add knocking sound
          chatnpc(player, 15874, "Get lost!", function () {
 			 //todo add get lost sound
@@ -47,7 +47,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			return true;
 	
 	//dog kennel 
-	//varp 3468
+	//varp 3468   1246925975 all blue draynor
 	
 	//interface 1383
 	

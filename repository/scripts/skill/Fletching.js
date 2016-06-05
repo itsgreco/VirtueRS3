@@ -166,6 +166,33 @@ var FletchMaterial = {
 			animation : 6702,
 			delay : 3
 		},
+		1515 : {//Yew logs
+			itemId : 1515,
+			useWith : [],
+			type : FletchType.FLETCH_WOOD,
+			category : 6954,
+			defaultProduct : 68,
+			animation : 24938,
+			delay : 3
+		},
+		1513 : {//Magic logs
+			itemId : 1513,
+			useWith : [],
+			type : FletchType.FLETCH_WOOD,
+			category : 6955,
+			defaultProduct : 72,
+			animation : 24938,
+			delay : 3
+		},
+		29556 : {//Elder logs
+			itemId : 29556,
+			useWith : [],
+			type : FletchType.FLETCH_WOOD,
+			category : 7994,
+			defaultProduct : 29736,
+			animation : 24938,
+			delay : 3
+		},
 		1777 : {//Bow string
 			itemId : 1777,
 			useWith : [],
@@ -214,6 +241,70 @@ var FletchMaterial = {
 			type : FletchType.STRING_BOW,
 			defaultProduct : 849,
 			animation : 6680
+		},
+		62 : {//Maple shieldbow (u)
+			itemId : 62,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 851,
+			animation : 24955
+		},
+		64 : {//Maple Shortbow (u)
+			itemId : 64,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 853,
+			animation : 24948
+		},
+		66 : {//Yew longbow (u)
+			itemId : 66,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 855,
+			animation : 24956
+		},
+		68 : {//Yew Shortbow (u)
+			itemId : 68,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 857,
+			animation : 24950
+		},		
+		70 : {//Magic longbow (u)
+			itemId : 70,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 859,
+			animation : 24957
+		},
+		72 : {//Magic Shortbow (u)
+			itemId : 72,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 861,
+			animation : 24951
+		},
+		29736 : {//Elder Shortbow (u)
+			itemId : 29736,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 29614,
+			animation : 24952
+		},
+		29734 : {//Elder Longbow (u)
+			itemId : 29734,
+			useWith : [1777],
+			category : 6958,
+			type : FletchType.STRING_BOW,
+			defaultProduct : 29611,
+			animation : 24958
 		},
 		52 : {//Arrow shaft
 			itemId : 52,
@@ -301,6 +392,22 @@ var listen = function(scriptManager) {
 	scriptManager.registerListener(EventType.OPHELD1, 52, opHeldListener);//Arrow shaft
 	scriptManager.registerListener(EventType.OPHELDU, 52, opHeldUseListener);//Arrow shaft
 	scriptManager.registerListener(EventType.OPHELDU, 314, opHeldUseListener);//Feather
+
+	
+	scriptManager.registerListener(EventType.OPHELD1, 48, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 50, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 54, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 56, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 58, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 60, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 62, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 64, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 66, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 68, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 70, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 72, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 29736, opHeldListener);
+	scriptManager.registerListener(EventType.OPHELD1, 29734, opHeldListener);
 	
 	/*for (var i in FletchMaterial) {
 		var material = FletchMaterial[i];
@@ -327,9 +434,16 @@ var Fletching = {
 				text : "You carefully cut the wood into: ",
 				animation : 6702
 			},
+			STRING : {
+				category : 6941,
+				categoryNames : 6942,
+				text : "You carefully string the bow into: ",
+				animation : 24952
+			},
 			ARROWS : {
 				category : 6943,
-				categoryNames : 6944
+				categoryNames : 6944,
+				animation : 19516
 				//TODO: What's the animation ID for tipping arrows?
 			}
 		},
@@ -352,8 +466,27 @@ var Fletching = {
 			addMaterial(6332, 6953, this.MaterialType.LOGS);//Mahogany logs
 			addMaterial(1515, 6954, this.MaterialType.LOGS);//Yew logs
 			addMaterial(1513, 6955, this.MaterialType.LOGS);//Magic logs
+			addMaterial(29556, 7994, this.MaterialType.LOGS);//Elder logs
 			addMaterial(52, 6966, this.MaterialType.ARROWS);//Arrow shafts
 			addMaterial(314, 6966, this.MaterialType.ARROWS);//Feathers
+			
+			addMaterial(48, 6958, this.MaterialType.STRING);
+			addMaterial(50, 6958, this.MaterialType.STRING);
+			addMaterial(54, 6958, this.MaterialType.STRING);
+			addMaterial(56, 6958, this.MaterialType.STRING);
+			addMaterial(58, 6958, this.MaterialType.STRING);
+			addMaterial(60, 6958, this.MaterialType.STRING);
+			addMaterial(62, 6958, this.MaterialType.STRING);
+			addMaterial(64, 6958, this.MaterialType.STRING);
+			addMaterial(66, 6958, this.MaterialType.STRING);
+			addMaterial(68, 6958, this.MaterialType.STRING);
+			addMaterial(70, 6958, this.MaterialType.STRING);
+			addMaterial(72, 6958, this.MaterialType.STRING);
+			addMaterial(29736, 6958, this.MaterialType.STRING);
+			addMaterial(29734, 6958, this.MaterialType.STRING);
+			
+			
+			
 		},
 		productLookup : {},
 		initProductLookup : function () {
@@ -398,3 +531,4 @@ var Fletching = {
 			api.setInputHandler(player, new Handler());
 		}
 }
+
