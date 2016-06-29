@@ -26,7 +26,17 @@ package org.virtue.game.content.dialogues;
  * @author Mystic Flow <Steven@rune-server.org>
  */
 public enum ChatheadEmoteType {
-        BAD_ASS(9855),
+	
+	
+	    ANGRY(9787),//long the one rs is using
+       // ANGRY(9786),//med
+       // ANGRY(9785),//sort
+	SHIFTY(9838),// dont think its the right one
+     
+        
+	
+	//////need to test and get right anim////
+        BAD_ASS(9854),
         CALM(9805), 
 	    CALM_TALK(9810), 
         CONFUSED(9830), 
@@ -38,19 +48,17 @@ public enum ChatheadEmoteType {
         LAUGH_EXCITED(9851),
         MEAN_FACE(9785), 
 	    MEAN_HEAD_BANG(9790), 
-        NEUTRAL(9827),
+        NEUTRAL(9827),//9834 maby NEUTRAL
 	    REALLY_SAD(9760), 
         SAD(9765), 
 	    SCARED(9780),
         SNOBBY(9820), 
         SNOBBY_HEAD_MOVE(9825), 
-        SECRELTY_TALKING(9838),
         TOUGH(9815), 
 	    TALKING_ALOT(9845), 
         THINKING(9860), 
         WORRIED(9775), 
 	    WHAT_THE_CRAP(9800);     
-        // on runescript there are happy,quiz,angry
 	
 	private int animID;
 	

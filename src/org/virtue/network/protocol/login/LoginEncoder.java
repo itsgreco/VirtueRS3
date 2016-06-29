@@ -106,7 +106,12 @@ public class LoginEncoder extends MessageToByteEncoder<LoginResponseMessage> {
 			packet.putShort(response.getPlayer().getIndex());//Player id
 			packet.putByte(1);//playerMember
 			packet.putTri(0);//Player DOB
-			packet.putByte(1);//map_members
+                        if(Constants.MembersWorld) {
+                        packet.putByte(1);//map_members
+                        } else {
+			packet.putByte(0);//map_members
+			}
+			
 			packet.putString(response.getPlayer().getName());
 			packet.put6ByteInteger(1412041454282L);
 		}

@@ -77,23 +77,36 @@ var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 			api.sendMessage(player, "Test", mesType);
 			return;
 		case 5:
-			api.createLocation(84873, 3108, 6098, 0, 10, 4);
-			api.createLocation(84871, 3108, 6107, 0, 10, 3);
-			api.createLocation(84873, 3108, 6116, 0, 10, 3);
-			api.createLocation(84871, 3099, 6098, 0, 10, 4);
-			api.createLocation(84869, 3099, 6107, 0, 10, 4);
-			api.createLocation(84871, 3099, 6116, 0, 10, 2);
-			api.createLocation(84873, 3090, 6098, 0, 10, 1);
-			api.createLocation(84871, 3090, 6107, 0, 10, 1);
-			api.createLocation(84873, 3090, 6116, 0, 10, 2);
+			api.spawnLocation(api.createLocation(84873, 3108, 6098, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84871, 3108, 6107, 0, 10, 3));
+			api.spawnLocation(api.createLocation(84873, 3108, 6116, 0, 10, 3));
+			api.spawnLocation(api.createLocation(84871, 3099, 6098, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84869, 3099, 6107, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84871, 3099, 6116, 0, 10, 2));
+			api.spawnLocation(api.createLocation(84873, 3090, 6098, 0, 10, 1));
+			api.spawnLocation(api.createLocation(84871, 3090, 6107, 0, 10, 1));
+			api.spawnLocation(api.createLocation(84873, 3090, 6116, 0, 10, 2));
 			return;
 		case 6:
+			api.spawnLocation(api.createLocation(84874, 3108, 6098, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84872, 3108, 6107, 0, 10, 3));
+			api.spawnLocation(api.createLocation(84874, 3108, 6116, 0, 10, 3));
+			api.spawnLocation(api.createLocation(84872, 3099, 6098, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84870, 3099, 6107, 0, 10, 4));
+			api.spawnLocation(api.createLocation(84872, 3099, 6116, 0, 10, 2));
+			api.spawnLocation(api.createLocation(84874, 3090, 6098, 0, 10, 1));
+			api.spawnLocation(api.createLocation(84872, 3090, 6107, 0, 10, 1));
+			api.spawnLocation(api.createLocation(84874, 3090, 6116, 0, 10, 2));
+			return;
+			
+			
+		case 7:
 			var loc = api.createLocation(38787, api.getCoords(player), 10, 0);
 			api.spawnLocation(loc, 100);
 			Java.type("org.virtue.Virtue").getInstance().getWidgetRepository().open(1477, 386, 673, false, player, loc);
 			api.sendMessage(player, "Opened interface on location...");
 			return;
-		case 7:
+		case 8:
 			api.openCentralWidget(player, 1709, false);
 			return;
 		}

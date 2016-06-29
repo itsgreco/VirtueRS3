@@ -86,6 +86,11 @@ public class Constants {
 	 */
 	public static final boolean legacyOnly = false;
 	
+        
+        public static final boolean MembersWorld = true;
+        
+        
+        
 	/**
 	 * Whether or not to lead GE Prices from a JSON File
 	 */
@@ -104,7 +109,7 @@ public class Constants {
 	/**
 	 * The Cache Repository
 	 */
-	public static final String CACHE_REPOSITORY = System.getProperty("user.home") + "/Desktop/865/";
+	public static final String CACHE_REPOSITORY = "./repository/cache/";
 	
 	/**
 	 * The packed npc extra data, which includes descriptions and animations

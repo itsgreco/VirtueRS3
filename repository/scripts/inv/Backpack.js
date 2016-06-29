@@ -241,7 +241,12 @@ var Backpack = {
 			//The item you are about to drop has high value.
 			//I wish to drop it.
 			//I wish to keep it.
-			if (item != null) {
+			
+			//if (item != 4577) {
+         //       api.delItem(player, Inv.BACKPACK, api.getId(item), 1, slot);
+		//		api.sendMessage(player, "Too late - it's gone!");
+		//	}
+             if (item != null) {
 				api.dropItem(api.getCoords(player), api.getId(item), api.getCount(item), player);
 				api.setInvSlot(player, Inv.BACKPACK, slot, null);
 			}

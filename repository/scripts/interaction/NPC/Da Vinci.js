@@ -1,12 +1,11 @@
-/**
- * Copyright (c) 2014 Virtue Studios
+/** Copyright (c) 2014 Virtue Studios
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions\:
+ * furnished to do so, subject to the following conditions:
  * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
@@ -18,49 +17,22 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-
-/**
- * 
- * @author Im Frizzy <skype:kfriz1998>
- * @author Frosty Teh Snowman <skype:travis.mccorkle>
- * @author Arthur <skype:arthur.behesnilian>
- * @author Kayla <skype:ashbysmith1996>
- * @author Sundays211
- * @since 16/01/2015
  */
 
-var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
-	invoke : function (event, locTypeId, args) {
+var Listener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
+	invoke : function (event, npcTypeId, args) {
 		var player = args.player;
-		var location = args.location;
-		
-		if (api.isPaused(player)) {
-			return false;
+		var npc = args.npc;
+		if (event == EventType.OPNPC1) {
+			chatnpc(player, npc, "angry", "Bah! A great artist such as myself should not have to<br> suffer the HUMILIATION of spending time on these<br> dreadful worlds where non-members wander everywhere!", function () {	
+	       });	
+		     
 		}
-		switch (locTypeId) {
-			
-			case 26807:
-			
-			return true;
-			
-			
-			case 26806:
-
-            //tele out of mod room 3230 3231
-			return true;
-
-			default:
-				return false;
-		}
-	
 	}
 });
 
-/* Listen to the object ids specified */
+/* Listen to the npc ids specified */
 var listen = function(scriptManager) {
-	var locs = [26807, 26806];
-	var listener = new LocationListener();
-	for (var i in locs) {
-	scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);
-	}
+	var listener = new Listener();
+	scriptManager.registerListener(EventType.OPNPC1, 336, listener);
 };

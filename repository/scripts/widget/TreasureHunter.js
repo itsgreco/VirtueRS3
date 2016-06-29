@@ -107,51 +107,51 @@ var TreasureHunterButtonListener = Java.extend(Java.type('org.virtue.engine.scri
 	invoke : function (event, trigger, args) {
 		var player = args.player;
 		switch (args.component) {
-		case 40:
+		case 44:
 			if(player.getKeys() < 1) {
 				api.sendMessage(player, "You are out of keys.");
 			} else {
 				player.getTreasureHunter().selectReward(0);
 			}			
 			return;
-		case 49:
+		case 53:
 			if(player.getKeys() < 1) {
 				api.sendMessage(player, "You are out of keys.");
 			} else {
 				player.getTreasureHunter().selectReward(1);
 			}			
 			return;
-		case 44:
+		case 48:
 			if(player.getKeys() < 1) {
 				api.sendMessage(player, "You are out of keys.");
 			} else {
 				player.getTreasureHunter().selectReward(2);
 			}			
 			return;
-		case 35:
+		case 39:
 			if(player.getKeys() < 1) {
 				api.sendMessage(player, "You are out of keys.");
 			} else {
 				player.getTreasureHunter().selectReward(3);
 			}			
 			return;
-		case 31:
+		case 35:
 			if(player.getKeys() < 1) {
 				api.sendMessage(player, "You are out of keys.");
 			} else {
 				player.getTreasureHunter().selectReward(4);
 			}			
 			return true;
-		case 214:
-			player.getTreasureHunter().claimReward(2);
-			return;
-		case 222:
+		case 239:
 			player.getTreasureHunter().claimReward(0);
 			return;
-		case 242:
+		case 269:
 			player.getTreasureHunter().claimReward(1);
 			return;
-		case 232:
+		case 231:
+			player.getTreasureHunter().claimReward(2);
+			return;
+		case 250:
 		case 760:
 			api.closeCentralWidgets(player);
 			return;

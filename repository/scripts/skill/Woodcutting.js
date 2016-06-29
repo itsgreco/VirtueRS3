@@ -110,6 +110,16 @@ var TreeType = {
         respawnDelay : 51,
         randomLife : 15
     },
+	TEAK : {
+        level : 35,
+        xp : 85.5,//todo
+        logId : 6333,
+        baseTime : 60,//
+        randomTime : 4,//
+        stumpID : 9037,
+        respawnDelay : 51,//
+        randomLife : 15//
+    },
     MAPLE : {
         level : 45,
         xp : 100,
@@ -119,6 +129,16 @@ var TreeType = {
         stumpID : 51843,
         respawnDelay : 72,
         randomLife : 10
+    },
+	MAHOGANY : {
+        level : 50,
+        xp : 125,
+        logId : 6332,
+        baseTime : 83,//////todo
+        randomTime : 16,/////
+        stumpID : 70080,
+        respawnDelay : 72,////
+        randomLife : 10///////
     },
     YEW : {
         level : 60,
@@ -295,7 +315,7 @@ var Woodcutting = {
 			this.registerTree(TreeType.NORMAL, 79813, 79814);			
 			
 			this.registerTree(TreeType.SWAMP, 9387, 10951);
-			this.registerTree(TreeType.SWAMP, 2409, 0);//members?
+			//this.registerTree(TreeType.SWAMP, 2409, 0);//members?
 			this.registerTree(TreeType.SWAMP, 9354, 11059);
 			this.registerTree(TreeType.SWAMP, 9366, 11864);
 			this.registerTree(TreeType.SWAMP, 9355, 11862);
@@ -319,6 +339,8 @@ var Woodcutting = {
 			
 			this.registerTree(TreeType.DEAD, 4820, 4821);//Jungle tree
 			this.registerTree(TreeType.DEAD, 4818, 4819);//Jungle tree
+			this.registerTree(TreeType.DEAD, 2887, 17493);//Jungle tree
+			
 			
 			this.registerTree(TreeType.ACHEY, 69554, 69555);//achey tree
 			
@@ -332,7 +354,14 @@ var Woodcutting = {
             this.registerTree(TreeType.WILLOW, 38627, 38725);
 			this.registerTree(TreeType.WILLOW, 58006, 38725);
 			
+			
+			this.registerTree(TreeType.TEAK, 9036, 9037);
+			
+			
 			this.registerTree(TreeType.MAPLE, 51843, 54766);
+			
+			this.registerTree(TreeType.MAHOGANY, 70075, 70080);
+			
 			
 			this.registerTree(TreeType.YEW, 38755, 38759);
 			
