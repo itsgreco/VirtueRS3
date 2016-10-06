@@ -41,7 +41,7 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		}
 		
 		if(event == EventType.OPPLAYERU) {//Item On Player
-			RottenPotato.handleItemOnPlayer(player);
+			RottenPotato.handleItemOnPlayer(player,target);
 		} else if (event == EventType.OPHELD1) {//Eat Option
 			RottenPotato.handleEatOption(player);
 		} else if (event == EventType.OPHELD2) {//Heal Option
@@ -68,20 +68,15 @@ var listen = function(scriptManager) {
 }
 
 var RottenPotato = {
-		handleItemOnPlayer : function(player) {
-			multi3(player, "Options", "Player Info", function() {
+		handleItemOnPlayer : function(player,target) {
+			multi4(player, "Options", "Player Info", function() {
 				
 			}, "Bank Stats", function() {
 				api.openCentralWidget(player, 1691, false);
 				api.setWidgetText(player, 1691, 7, "1,333,333,700"); //Total Bank Value
-				multi2(player, "DEFINITELY SEND "+ api.getName(target) + " TO BOTANY BAY?",  "Yes", function () {
-					RottenPotato.requestLookup(player);
-				}, "No", function() {
-					
-				});
 			}, "Send "+api.getName(target)+" to Botany Bay", function() {
 				multi2(player, "DEFINITELY SEND "+ api.getName(target) + " TO BOTANY BAY?",  "Yes", function () {
-					RottenPotato.requestLookup(player);
+					RottenPotato.requestLookup(player,target);
 				}, "No", function() {
 					
 				});
@@ -99,6 +94,7 @@ var RottenPotato = {
 				player.getModel().refresh();
 			}, "Wipe inventory", function () {
 				api.emptyInv(player, Inv.BACKPACK);
+				api.addCarriedItem(player, 5733, 1);
 			}, "Invisible mode", function () {
 				player.getModel().setRender(Render.INVISIBLE);
 				player.getModel().refresh();
@@ -108,39 +104,79 @@ var RottenPotato = {
 			});
 		},
 		handleJmodOption : function (player) {
-			api.openCentralWidget(player, 1610, false);
+			multi4(player, "CM-Tool", "Open Bank", function () {
+				api.closeCentralWidgets(player);
+				api.openOverlaySub(player, 1017, 762, false);
+			}, "Max Stats", function () {
+				for (var skill=0; skill < 27; skill++) {
+					api.addExperience(player, skill, 140344310, false);
+				}
+			}, "Clear Title", function () {
+				player.getAppearance().setPrefixTitle("");
+				player.getAppearance().refresh();
+			}, "Log Out", function () {
+
+			});
 		},
 		handleCommandListOption : function (player) {
-			multi3(player, "What would you like to do?", "Spawn Fake Rare", function () {
-				var npc = api.createNpc(20588, api.getCoords(player));
-				if(npc.getOwner() != null) {
-					api.sendMessage(player, "You already have a rare item out.");
-				} else {
-					npc.setOwner(player);
-					api.spawnNpc(npc);
-					api.runAnimation(player, 827);
-					api.moveAdjacent(player);
+			multi5(player, "How would you like to be logged?", "Keep me logged in.", function () {
+
+			}, "Kick me out.", function () {
+				api.kickPlayer(player, true);
+			}, "Never mind logging, just wipe my bank.", function () {
+				api.emptyInv(player, Inv.BANK);
+				api.sendMessage(player, "Bank is now clear!");
+			}, "QP Cape please!", function () {
+				if (api.freeSpaceTotal(player, Inv.BACKPACK) < 1) {
+					api.sendMessage(player, "Not enough space in your inventory space.");
+					return;
 				}
-			}, "Balloon Animals Event", function () {
-				World.getInstance().sendAdminBroadcast("The balloon animal event has started. Start popping your balloons for a chance of the big prize!");
-				RottenPotato.spawnBalloonEvent(player);
-			}, "Nothing", function () {
-				//Do nothing, like they told you to!
+				api.addCarriedItem(player, 9813, 1);
+			}, "QP Hood Please!", function () {
+				if (api.freeSpaceTotal(player, Inv.BACKPACK) < 1) {
+					api.sendMessage(player, "Not enough space in your inventory space.");
+					return;
+				}
+				api.addCarriedItem(player, 9814, 1);
 			});
 		},
 		//This function will be used to check if player logged out, when trying to send them to botany bay.
-		requestLookup : function (player) {
-			var callback = function (player, userHash) {
-				var targetPlayer = api.getWorldPlayerByHash(userHash);
-				if (targetPlayer != null) {
-					//TODO Teleporting, Animations, GFX for sending to botany bay.
-				} else {
-					api.sendMessage(player, "The specified player is not currently in the game world.")
+		requestLookup : function (player,target) {
+
+				var hash = api.getUserHash(target);
+				if (hash != null) {
+					var targetPlayer = api.getWorldPlayerByHash(hash);
+					if (targetPlayer != null) {
+
+					var frame = 0;
+			   var Action = Java.extend(Java.type('org.virtue.game.entity.player.event.PlayerActionHandler'), {
+				   process : function (player) {
+					if (frame === 0) {
+						api.setSpotAnim(target, 1, 3402);
+			        	api.runAnimation(target, 17542);
+					} else if (frame == 2) {
+				target.getModel().setRender(Render.PLAYER);
+				target.getModel().setRender(Render.NPC);
+				target.getModel().setNPCId(15782);
+				target.getModel().refresh();
+					} else if (frame == 3) {
+						target.getModel().setRender(Render.PLAYER);
+						target.getModel().refresh();
+					}
+					frame++;
+					return false;
+				},
+				stop : function (player) {
+					api.stopAnimation(player);
+					api.clearSpotAnim(player, 1);
 				}
-			};
-		},
-		spawnBalloonEvent : function (player) {//Special Event - Redoing this.
-			var npc = api.createNpc(2276, api.getCoords(player));
-			api.spawnNpc(npc);
+			});
+			player.setAction(new Action());
+					} else {
+						api.sendMessage(player, "The specified player is not currently in the game world.")
+					}
+				}
+
 		}
+		
 }

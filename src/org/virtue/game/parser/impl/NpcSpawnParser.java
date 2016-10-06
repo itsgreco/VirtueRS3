@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.virtue.Constants;
 import org.virtue.game.World;
 import org.virtue.game.entity.npc.NPC;
 import org.virtue.game.world.region.Tile;
@@ -47,9 +48,19 @@ public class NpcSpawnParser {
 	 */
 	private static Logger logger = LoggerFactory.getLogger(NpcSpawnParser.class);
 	
-	private static File PATH = new File("repository/npc/NPCSpawns.txt");
+	private static File PATH;
+        
 	
 	public static void loadNpcs ()  {
+            
+            if(Constants.MembersWorld) {
+                       
+                       PATH = new File("repository/npc/MembersNPCSpawns.txt");
+                        } else {
+			PATH = new File("repository/npc/FreeNPCSpawns.txt");
+			}
+            
+            
 		try (BufferedReader reader = new BufferedReader(new FileReader(PATH))) {
 			String line;
 			while ((line = reader.readLine()) != null) {

@@ -1,5 +1,6 @@
 
 
 
-var QuestPoints = 1297;
 
+
+var QuestPoints = 1297;

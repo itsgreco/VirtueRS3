@@ -18,6 +18,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+
  */
 
 var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
@@ -28,47 +29,46 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		if (api.isPaused(player)) {
 			return false;
 		}
-		
 		switch (locTypeId) {
-            case 75852://Trapdoor old xmas event
-			//todo add knocking sound
-            chatnpc(player, 15874, "NEUTRAL", "Get lost!", function () {
-			 //todo add get lost sound
-		    });	 
-			return true;
-			case 96780:
-			case 96781:
-			api.runAnimation(player, 23603, function () {
-			api.teleportEntity(player, 414, 652, 0);
-			});	 
-	        return true;
-			
-			case 96782:
-			case 96783:
-			api.runAnimation(player, 23603, function () {
-			api.teleportEntity(player, 3107, 3310, 0);
-			});	 
-	        return true;
-	
-	//dog kennel 
-	//varp 3468   1246925975 all blue draynor
-	
-	//interface 1383
-	
-	
-	
-	
+		case 2646:
+		case 67263:
+		case 67264://flax
+		case 67265:
+        if (map_members == false){
+		mesbox(player, "Only members can pick flax.", function () {	
+		});
+		} else {
+		runAnimation(player, 827, function () {
+        api.addCarriedItem(player, 1779, 1);
+		api.transformLoc(location, -1, 60);
+		});
+		}
+        return true;
+		case 15506:
+		case 15507://wheat
+		case 15508:
+		runAnimation(player, 827, function () {
+		api.transformLoc(location, -1, 60);
+        api.addCarriedItem(player, 1947, 1);
+		});
+		return true;
+		case 1161://cabbage
+		runAnimation(player, 827, function () {
+		api.transformLoc(location, -1, 60);
+        api.addCarriedItem(player, 1965, 1);
+		});
+		return true;
 			default:
-				return false;
+			return false;
 		}		
 	}
 });
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [75852,96780,96781,96782,96783];
+	var locs = [2646,67263,67264,67265,15506,15507,15508,1161];
 	var listener = new LocationListener();
 	for (var i in locs) {
-		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);
+		scriptManager.registerListener(EventType.OPLOC2, locs[i], listener);
 	}
 };

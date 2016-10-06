@@ -14,7 +14,15 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 		if(event == EventType.OPHELD1) {
 		switch (objTypeId) {
-				
+		case 20078://Heimland games souvenir
+	//	api.runAnimation(player, 12913);
+		//api.runAnimation(player, 15105);
+		return;	
+		case 28134://sparkler
+		api.runAnimation(player, 20139);
+		api.setSpotAnim(player, 1, 3953);
+		api.delCarriedItem(player, objTypeId, 1);
+		return;			
 	    case 6865://marionette blue jump
 		api.runAnimation(player, 3003);
 		api.setSpotAnim(player, 1, 511);
@@ -37,11 +45,9 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		}
 		} else if (event == EventType.OPHELD2) {
 		switch (objTypeId) {
-
-		//	case 4565:
-			
-		//	skipping anim 1836 aand i think stand is 1837
-		//	return;
+	//	case 4565:
+	//		api.setRenderAnim(player, 594);
+	//	return;	
 		case 6865://marionette blue walk
 		api.runAnimation(player, 3004);
 		api.setSpotAnim(player, 1, 512);
@@ -67,6 +73,9 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		}
 		} else if (event == EventType.OPHELD3) {
 		switch (objTypeId) {
+		case 14742://Lily of the valley
+		api.runAnimation(player, 11622);
+		return;
 		case 6865://marionette blue bow
 		api.runAnimation(player, 3005);
 		api.setSpotAnim(player, 1, 513);
@@ -110,7 +119,19 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 	    }
 		} else if (event == EventType.OPWORN1) {
 		switch (objTypeId) {
-			case 12645://Chocatrice cape
+		case 20084://Golden hammer
+		api.runAnimation(player, 15150);
+		return;	
+		case 20077://Salty claws hat
+		api.runAnimation(player, 329);
+		return;	
+		case 15426://Candy cane
+		api.runAnimation(player, 12664);
+		return;	
+		case 14742://Lily of the valley
+		api.runAnimation(player, 11622);
+		return;
+		case 12645://Chocatrice cape
 		api.runAnimation(player, 8903);
         api.setSpotAnim(player, 1, 1566);
 		return;	
@@ -123,6 +144,10 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		}
 		} else if (event == EventType.OPWORN2) {
 		switch (objTypeId) {
+		case 20084://Golden hammer
+		api.runAnimation(player, 15149);
+		 api.setSpotAnim(player, 1, 2953);
+		return;	
         case 15673://Squirrel Ears juggle
 		api.runAnimation(player, 12265);
         api.setSpotAnim(player, 1, 2145);
@@ -139,7 +164,7 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 /* Listen to the item ids specified */
 var listen = function(scriptManager) {
-	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867 ];
+	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867,14742 ];
 	var itemListener = new ItemListener();
 	for (var i in ids) {
 		scriptManager.registerListener(EventType.OPHELD1, ids[i], itemListener);
@@ -147,15 +172,11 @@ var listen = function(scriptManager) {
 		scriptManager.registerListener(EventType.OPHELD3, ids[i], itemListener);
 		scriptManager.registerListener(EventType.OPHELD4, ids[i], itemListener);
 	}
-	var wornids = [ 15673,10507,12645 ];
+	var wornids = [ 15673,10507,12645,14742,20084,20077,15426 ];
 	for (var i in wornids) {
 		scriptManager.registerListener(EventType.OPWORN1, wornids[i], itemListener);
 		scriptManager.registerListener(EventType.OPWORN2, wornids[i], itemListener);
-	}
-	
-	
-	
-	
+	}	
 	
 }
 
@@ -166,15 +187,15 @@ function renderEasterRing(player) {
 	if(usingRing) {
 		usingRing = false;
 	//	player.unlock();
-		player.getAppearance().setRender(Render.PLAYER);
-		player.getAppearance().refresh();
+		player.getModel().setRender(Render.PLAYER);
+		player.getModel().refresh();
 		//api.sendMessage(player, "Not using");
 	} else {
 		usingRing = true;
 		//player.lock();
-		player.getAppearance().setRender(Render.NPC);
-		player.getAppearance().setNPCId(eggPick);
-		player.getAppearance().refresh();
+		player.getModel().setRender(Render.NPC);
+		player.getModel().setNPCId(eggPick);
+		player.getModel().refresh();
 		api.sendMessage(player, "You morphed into an magical egg! Re-click the ring to morph back.");
 	}
 }

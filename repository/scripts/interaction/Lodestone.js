@@ -255,7 +255,11 @@ var LodestoneInterfaceListener = Java.extend(Java.type('org.virtue.engine.script
 			return;
 		case 50://Close button
 			return;
+		case 49://close
+			return;
 		case 58://Enable/disable quick teleport
+		
+		
 		default:
 			api.sendMessage(player, "Unhandled lodestone button: comp="+args.component+", button="+args.button);
 			return;

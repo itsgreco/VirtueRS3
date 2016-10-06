@@ -496,6 +496,9 @@ var Emotes = {
 				api.runAnimation(player, 25325);
 				api.setSpotAnim(player, 1, 5293);
 				return;
+			case 196://15 year
+			api.sendMessage(player, "todo add.");
+				return;		
 			default:
 				api.sendMessage(player, "Animation at slot "+slot+" has not been added yet.");
 				return;

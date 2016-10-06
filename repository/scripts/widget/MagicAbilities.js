@@ -43,11 +43,22 @@ var MageAbilitiesButtonListener = Java.extend(Java.type('org.virtue.engine.scrip
 			var spell = org.virtue.game.content.skills.magic.Spellbook.MODERN.get(args.slot);
 			if (player.getCombatSchedule().getAutocastSpell() != null) {
 				player.getCombatSchedule().setAutocastSpell(null);
-				api.sendMessage(player, "Auto-cast spell cleared.");
+			//	api.sendMessage(player, "Auto-cast spell cleared.");
 			} else {
 				player.getCombatSchedule().setAutocastSpell(spell);
-				api.sendMessage(player, "Main-hand spell set to: spell");
+			//	api.sendMessage(player, "Main-hand spell set to: spell");
 			}
+			
+		switch (args.slot) {
+		case 155://Home Teleport
+			api.openCentralWidget(player, 1092, false);
+		return;
+			}
+			return;
+			
+			
+			
+			
 		default:
 			api.sendMessage(player, "Unhandled mage abilities button: comp="+args.component+", slot="+args.slot+", button="+args.button);
 			return;
@@ -69,6 +80,8 @@ var MageAbilitiesTargetListener = Java.extend(Java.type('org.virtue.engine.scrip
 			return;//This means the spell wasn't used on an item. We'll just suppress the debug message.
 		}
 		switch (args.slot) {
+			
+		
 		case 188://Analyse
 			Disassembly.analyseItem(player, api.getId(item));
 			return;

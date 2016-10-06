@@ -31,7 +31,7 @@
  */
 
 var INTEGER_MAX = 2147483647;
-
+var map_members = false ;// for testing only readd in a java file
 var COINS = 995;
 
 function runAnimation (entity, animId, callback) {
@@ -252,14 +252,13 @@ function destroyItem (player, item, slot, onConfirm) {
 			}        
 		}
 	});	
-        
-                        api.setWidgetText(player, 1183, 4, api.getItemName(item));
+            api.setWidgetText(player, 1183, 4, api.getItemName(item));
 			api.setWidgetText(player, 1183, 9, api.getDestroy(item));
-		        api.setWidgetObject(player, 1183, 10, api.getId(item), 1);
+		    api.setWidgetObject(player, 1183, 10, api.getId(item), 1);
 			api.setWidgetText(player, 1183, 12, "Are you sure you want to destroy this object?");
-                       // api.hideWidget(player, 1186, 8, true);//all button
+             // api.hideWidget(player, 1186, 8, true);//all button
 			api.openOverlaySub(player, 1006, 1183, false);
-                        api.setInputHandler(player, new Handler());
+            api.setInputHandler(player, new Handler());
                         
 
 }
@@ -307,7 +306,26 @@ function mesbox (player, message, callback) {
 	api.setInputHandler(player, new Handler());
 }
 
-function chatplayer (player, message, callback) {
+
+
+function chatplayernpc (player, npc, message, callback) {
+	var Handler = Java.extend(Java.type('org.virtue.game.content.dialogues.InputEnteredHandler'), {
+		handle : function (value) {
+			if (callback !== undefined) {
+				callback();
+			}
+		}// 11 player 15 npc
+	});
+	api.setWidgetText(player, 1187, 6, message);
+	api.hideWidget(player, 1187, 3, false);
+	api.openOverlaySub(player, 1006, 1187, false);
+	api.setInputHandler(player, new Handler());
+}
+
+
+
+
+function chatplayer (player, emoteName, message, callback) {
 	var Handler = Java.extend(Java.type('org.virtue.game.content.dialogues.InputEnteredHandler'), {
 		handle : function (value) {
 			if (callback !== undefined) {
@@ -315,7 +333,7 @@ function chatplayer (player, message, callback) {
 			}
 		}
 	});
-	player.getDialogs().sendPlayerChat(message);
+	player.getDialogs().sendPlayerChat(message, emoteName);
 	api.setInputHandler(player, new Handler());
 }
 

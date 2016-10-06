@@ -39,7 +39,7 @@ var Magestix = {
 			api.setVarp(player, 304, Inv.SUMMONING_SHOP_1);
 			api.setVarp(player, 305, Inv.SUMMONING_SHOP_FREE);
 			api.setVarc(player, 2360, "Magestix's Summoning Shop");
-			api.openCentralWidget(player, 1265, false);
+			api.openCentralWidget(player, Shop_Interface, false);
 		},
 
 		howtotrain : function (player, npc) {

@@ -337,7 +337,7 @@ function startFood (player, item, slot) {
 	} else {
 		api.sendFilterMessage(player, "You eat the " + api.getItemName(food.itemID) + ".");
 	}
-	if(player.getCombat().inCombat() == true) {
+	if(player.getImpactHandler().inCombat() == true) {
 		api.runAnimation(player, 18002);
 	} else {
 		api.runAnimation(player, 18001);

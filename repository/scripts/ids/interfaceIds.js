@@ -1,5 +1,43 @@
-
-
-
-var chat_interface = 1529;
-
+var inter0 = 0;
+var inter1 = 1;
+var inter2 = 2;
+var inter3 = 3;
+var inter4 = 4;
+var inter5 = 5;
+var inter6 = 6;
+var inter7 = 7;
+var inter8 = 8;
+var inter9 = 9;
+var inter10 = 10;
+var inter11 = 11;
+var inter12 = 12;
+var inter13 = 13;
+var inter14 = 14;
+var inter15 = 15;
+var inter16 = 16;
+var inter17 = 17;
+var inter18 = 18;
+var inter19 = 19;
+var Skillcape_Customiser_Interface = 20;
+var inter21 = 21;
+var inter22 = 22;
+var inter23 = 23;
+var inter24 = 24;
+var inter25 = 25;
+var inter26 = 26;
+var inter27 = 27;
+var inter28 = 28;
+var inter29 = 29;
+var inter30 = 30;
+var inter31 = 31;
+var inter32 = 32;
+var inter33 = 33;
+var inter34 = 34;
+var inter35 = 35;
+var inter105 = 105;
+var Price_Checker_Interface = 206;
+//var Price_Checker_Interface = 207;//todo with Price_Checker inv
+var Thessalias_Makeovers_Interface = 729;
+var Shop_Interface = 1265;
+//var chat_Interface = 1529;
+var Jmod_Toolbox_Interface = 1610;

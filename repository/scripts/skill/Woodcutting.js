@@ -307,15 +307,20 @@ var Woodcutting = {
 			this.registerTree(TreeType.NORMAL, 38787, 40356);
 			this.registerTree(TreeType.NORMAL, 38786, 40355);
 			this.registerTree(TreeType.NORMAL, 38782, 40351);
-			this.registerTree(TreeType.NORMAL, 38782, 40352);
+			this.registerTree(TreeType.NORMAL, 38784, 40352);
 			this.registerTree(TreeType.NORMAL, 38783, 40352);
 			this.registerTree(TreeType.NORMAL, 38788, 40357);
 			this.registerTree(TreeType.NORMAL, 1276, 1342);
 			this.registerTree(TreeType.NORMAL, 93384, 40352);
 			this.registerTree(TreeType.NORMAL, 79813, 79814);			
 			
+			this.registerTree(TreeType.EVERGREEN, 54787, 57931);
+			this.registerTree(TreeType.EVERGREEN, 54778, 54783);
+
+			
 			this.registerTree(TreeType.SWAMP, 9387, 10951);
-			//this.registerTree(TreeType.SWAMP, 2409, 0);//members?
+			this.registerTree(TreeType.SWAMP, 9388, 11855);
+			//this.registerTree(TreeType.SWAMP, 2409, 0);//from members quest
 			this.registerTree(TreeType.SWAMP, 9354, 11059);
 			this.registerTree(TreeType.SWAMP, 9366, 11864);
 			this.registerTree(TreeType.SWAMP, 9355, 11862);
@@ -342,10 +347,11 @@ var Woodcutting = {
 			this.registerTree(TreeType.DEAD, 2887, 17493);//Jungle tree
 			
 			
-			this.registerTree(TreeType.ACHEY, 69554, 69555);//achey tree
+			this.registerTree(TreeType.ACHEY, 69554, 69555);
 			
 			this.registerTree(TreeType.EUCALYPTUS, 70071, 70073);//EUCALYPTUS tree needs fix
 			this.registerTree(TreeType.EUCALYPTUS, 70068, 70070);//EUCALYPTUS tree needs fix
+			this.registerTree(TreeType.EUCALYPTUS, 70066, 70067);
 			
 			this.registerTree(TreeType.OAK, 38732, 38754);
 			this.registerTree(TreeType.OAK, 38731, 38741);
@@ -421,7 +427,7 @@ var Woodcutting = {
 						api.addExperience(player, Stat.WOODCUTTING, tree.type.xp, true);
 						api.addCarriedItem(player, tree.type.logId, 1);
 						api.sendMessage(player, "You get some " + api.getItemName(tree.type.logId)+ ".", MesType.GAME_SPAM);
-						if (tree.type == TreeType.NORMAL || Math.random() < 0.2) {//If the tree is not a normal tree, there is a 1 in 5 chance of felling it
+						if (tree.type == TreeType.NORMAL  || tree.type == TreeType.SWAMP || tree.type == TreeType.EVERGREEN || tree.type == TreeType.DEAD || Math.random() < 0.2) {//If the tree is not a normal tree, there is a 1 in 5 chance of felling it
 							fellTree();	
 							return true;
 						} else if (api.freeSpaceTotal(player, Inv.BACKPACK) < 1) {
