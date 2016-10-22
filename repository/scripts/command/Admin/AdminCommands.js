@@ -7,12 +7,6 @@ var Tile = Java.type('org.virtue.game.world.region.Tile');
 
 
 var Gender = Java.type('org.virtue.game.entity.player.PlayerModel.Gender');
-
-/** An better optimize way, instead having tons of seperate command files.
- * @author Kayla
- * @date 11/28/2015
- */
-
 var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, syntax, scriptArgs) {
 		var player = scriptArgs.player;

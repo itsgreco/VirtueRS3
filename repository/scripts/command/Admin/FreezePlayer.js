@@ -1,8 +1,3 @@
-/**
- * @Author Kayla
- * @Date 11/14/2015
- */
-
 var CommandListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, syntax, scriptArgs) {
 		var player = scriptArgs.player;

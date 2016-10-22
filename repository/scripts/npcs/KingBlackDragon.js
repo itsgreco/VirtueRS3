@@ -1,8 +1,3 @@
-/*
- * Handles the King Black Dragon.
- * @author Emperor
- *
- */ 
 var AttackHandler = Java.type('org.virtue.game.entity.combat.impl.AttackHandler');
 var AttackInfo = Java.type('org.virtue.game.entity.combat.AttackInfo');
 var AttackEvent = Java.type('org.virtue.game.entity.combat.AttackEvent');

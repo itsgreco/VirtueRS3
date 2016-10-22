@@ -1,26 +1,3 @@
-/**
- * Copyright (c) 2014 Virtue Studios
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions\:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
-
- */
-
 var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, locTypeId, args) {
 		var player = args.player;
@@ -58,6 +35,15 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
         api.addCarriedItem(player, 1965, 1);
 		});
 		return true;
+		
+		case 312://Potato
+		runAnimation(player, 827, function () {
+		api.transformLoc(location, -1, 60);
+        api.addCarriedItem(player, 1942, 1);
+		});
+		return true;
+		
+		
 			default:
 			return false;
 		}		
@@ -66,7 +52,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [2646,67263,67264,67265,15506,15507,15508,1161];
+	var locs = [312,2646,67263,67264,67265,15506,15507,15508,1161];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC2, locs[i], listener);

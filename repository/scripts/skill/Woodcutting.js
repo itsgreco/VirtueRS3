@@ -1,34 +1,3 @@
-/**
- * Copyright (c) 2014 Virtue Studios
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-/**
- * @author Im Frizzy <skype:kfriz1998>
- * @author Kayla <skype:ashbysmith1996>
- * @author Frosty Teh Snowman <skype:travis.mccorkle>
- * @author Arthur <skype:arthur.behesnilian>
- * @author Sundays211
- * @since 05/11/2014
- */
-
 var TreeType = {
     NORMAL : {
         level : 1,
@@ -312,7 +281,8 @@ var Woodcutting = {
 			this.registerTree(TreeType.NORMAL, 38788, 40357);
 			this.registerTree(TreeType.NORMAL, 1276, 1342);
 			this.registerTree(TreeType.NORMAL, 93384, 40352);
-			this.registerTree(TreeType.NORMAL, 79813, 79814);			
+			this.registerTree(TreeType.NORMAL, 79813, 79814);
+            this.registerTree(TreeType.NORMAL, 70060, 70062);			
 			
 			this.registerTree(TreeType.EVERGREEN, 54787, 57931);
 			this.registerTree(TreeType.EVERGREEN, 54778, 54783);
@@ -340,6 +310,7 @@ var Woodcutting = {
 			this.registerTree(TreeType.DEAD, 47596, 47597);
 			this.registerTree(TreeType.DEAD, 1289, 1353);
 			this.registerTree(TreeType.DEAD, 69144, 69146);
+			this.registerTree(TreeType.DEAD, 69139, 69140);
 			this.registerTree(TreeType.DEAD, 24168, 24169);//dying tree
 			
 			this.registerTree(TreeType.DEAD, 4820, 4821);//Jungle tree
@@ -348,6 +319,7 @@ var Woodcutting = {
 			
 			
 			this.registerTree(TreeType.ACHEY, 69554, 69555);
+			this.registerTree(TreeType.ACHEY, 69556, 69557);
 			
 			this.registerTree(TreeType.EUCALYPTUS, 70071, 70073);//EUCALYPTUS tree needs fix
 			this.registerTree(TreeType.EUCALYPTUS, 70068, 70070);//EUCALYPTUS tree needs fix

@@ -1,7 +1,3 @@
-/**
- * @author Alex (Daemonheim3)
- */
-
 var Craftings = {
 		LEATHER : {
 			itemID : 1741,

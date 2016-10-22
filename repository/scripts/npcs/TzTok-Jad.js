@@ -1,7 +1,3 @@
-/*
- * @author Kayla
- * @date 11/13/2015
- */ 
 var AttackHandler = Java.type('org.virtue.game.entity.combat.impl.AttackHandler');
 var AttackInfo = Java.type('org.virtue.game.entity.combat.AttackInfo');
 var AttackEvent = Java.type('org.virtue.game.entity.combat.AttackEvent');

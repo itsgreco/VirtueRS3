@@ -1,8 +1,3 @@
-/**
- * @author Kayla
- * @since 11/17/2015
- */
-
 var RoomTypes = {
     DEFAULT : {
         level : 1,

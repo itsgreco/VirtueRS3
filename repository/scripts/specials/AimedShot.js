@@ -1,8 +1,3 @@
-/**
- * Handles handCannon Spec
- * @author Kayla
- *
- */
 var SpecialAttackHandler = Java.type('org.virtue.game.entity.combat.impl.SpecialAttackHandler');
 var CombatStyle = Java.type('org.virtue.game.entity.combat.CombatStyle');
 var AttackInfo = Java.type('org.virtue.game.entity.combat.impl.ImpactInfo');

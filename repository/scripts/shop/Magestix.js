@@ -1,7 +1,3 @@
-/**
- *  @author Alex
- */
-
 var MagestixListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, npcTypeId, args) {
 		var player = args.player;

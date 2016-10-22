@@ -3814,3 +3814,6 @@
 25351 - If you destroy this axe you will need to kill or intimidate Hollowtoof for another.
 25352 - If you destroy this armour, you will need to kill or intimidate Hollowtoof for another.
 25353 - If you destroy this shield, you will need to kill goblin bosses or speak to the goblin generals in the Goblin Village to get another one.
+31619 - If you destroy this, you can get it back from Diango.
+34026 - Are you sure you want to destroy your Treasure Hunter prize? You cannot reclaim it.
+36093 - Are you sure you want to destroy your Treasure Hunter prize? You cannot reclaim it.

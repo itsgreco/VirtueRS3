@@ -1,9 +1,3 @@
-/**
- * Handles JMod ToolBox Widget
- * @Author Kayla
- * @Since 3/29/2016
- */
-
 var JModOpenListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, binding, args) {
 		var player = args.player;

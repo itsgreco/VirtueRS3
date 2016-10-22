@@ -1,8 +1,3 @@
-/**
- * Handles the dragon claws special attack.
- * @author Emperor
-  *
- */
 var CombatStyle = Java.type('org.virtue.game.entity.combat.CombatStyle');
 var AttackInfo = Java.type('org.virtue.game.entity.combat.impl.ImpactInfo');
 var AnimationBlock = Java.type('org.virtue.network.protocol.update.block.AnimationBlock');

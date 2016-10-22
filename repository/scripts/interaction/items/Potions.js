@@ -1,7 +1,4 @@
-/**
- * @author Kayla
- */
- var PotionTypes = {
+var PotionTypes = {
  	    OVERLOAD_FLASK : {
 			itemID : 23531,
 			buffAttack: 16,

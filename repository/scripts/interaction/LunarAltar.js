@@ -1,7 +1,3 @@
-/**
- *  @author Alex
- */
-
 var LunarAltarListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, locTypeId, args) {
 		var player = args.player;

@@ -1,4 +1,3 @@
-
 var fill = {
 	
         VIAL : {
@@ -12,10 +11,6 @@ var fill = {
 
 		}
 };
-
-
-
-
 
 
 var Listener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {

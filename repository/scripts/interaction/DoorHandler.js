@@ -1,7 +1,3 @@
-/**
- * @author Kayla
- * @date 12/14/2015
- */
 var opened;
 
 var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {

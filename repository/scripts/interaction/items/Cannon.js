@@ -1,6 +1,3 @@
-/**
- * @Author Kayla
- */
 var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, itemTypeId, args) {
 		var player = args.player;
