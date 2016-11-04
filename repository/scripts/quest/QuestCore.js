@@ -79,6 +79,9 @@ var QuestCore = {
 			case 6://Cook's Assistant
 				CooksAssistant.showQuestJournal(player, this);
 				break;
+			case 109://Witch's House
+				WitchsHouse.showQuestJournal(player, this);
+				break;	
 			default:
 				this.setJournalLine(player, 1, "Quest not implemented.");
 				break;

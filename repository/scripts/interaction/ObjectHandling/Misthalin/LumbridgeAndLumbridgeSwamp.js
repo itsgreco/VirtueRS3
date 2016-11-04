@@ -13,7 +13,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			mesbox(player, "You already have a hammer.", function () {
 		    });	
 			} else {
-		    api.addCarriedItem(player, 2347,1);
+		        api.addCarriedItem(player, 2347,1);
 			chatobj(player, 2347, "You take a hammer from the crate.", function () {	
 	     	});
 			} 
@@ -27,7 +27,9 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		    mesbox(player, "You need to be on a member's world to use this feature.", function () {	
 		    });
 		    } else {
-		   //code to get in here
+				// make sure varp is  api.setVarp(player, 114, 16384);  befor you can tele in
+		    api.teleportEntity(player, 3149, 9652, 0);
+		  //  api.setVarp(player, 114, 0); 
 		    }
 	        return true;
 			case 91021://dark hole under tree

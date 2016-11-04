@@ -30,6 +30,8 @@ package org.virtue.game.parser;
  */
 public enum ParserType {	
 	XML(),
+    MYSQL(),
 	JSON();
+        
 
 }

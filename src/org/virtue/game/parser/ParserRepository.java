@@ -21,6 +21,7 @@
  */
 package org.virtue.game.parser;
 
+import org.virtue.game.parser.impl.MySQLParser;
 import org.virtue.game.parser.xml.XmlParser;
 
 /**
@@ -33,12 +34,19 @@ public class ParserRepository {
 	 * The XML Parser
 	 */
 	private XmlParser xml;
+        
+        
+        /**
+	 * The mysql Parser
+	 */
+        private MySQLParser mysql;
 	
 	/**
 	 * Loads the possible parsers into the repo
 	 */
 	public void load() {
 		xml = new XmlParser();
+                mysql = new MySQLParser();
 	}
 	
 	public <T> T loadObject (Class<T> outputType, String name) {
@@ -53,4 +61,10 @@ public class ParserRepository {
 	public XmlParser getParser () {
 		return xml;
 	}
+        
+      // public MySQLParser getParser () {
+	//	return mysql;
+	//} 
+        
+        
 }
