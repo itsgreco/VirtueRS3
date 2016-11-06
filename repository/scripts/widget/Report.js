@@ -53,12 +53,12 @@ var ReportButtonListener = Java.extend(Java.type('org.virtue.engine.script.liste
 			return;
 		case 1406://Report selection
 			switch (args.component) {	
-			case 15://Report player
+			case 16://Report player
 				api.sendMessage(player, "Player reporting is not yet available.");
 				api.closeCentralWidgets(player);
 				//api.openCentralWidget(player, 594, false);
 				return;
-			case 23://Report bug
+			case 24://Report bug
 				api.openCentralWidget(player, 1405, false);
 				return;
 			default:

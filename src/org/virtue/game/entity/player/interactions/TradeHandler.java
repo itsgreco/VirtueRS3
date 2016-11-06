@@ -40,7 +40,7 @@ public class TradeHandler implements PlayerOptionHandler {
 	 */
 	@Override
 	public int getRange() {
-		return 1;
+	return 1;
 	}
 
 	/* (non-Javadoc)
@@ -49,20 +49,28 @@ public class TradeHandler implements PlayerOptionHandler {
 	@Override
 	public boolean interact(Player player, Player target) {
 		if (player.getPrivilegeLevel().getId() == 6 || player.getPrivilegeLevel().getId() == 7
-				|| player.getPrivilegeLevel().getId() == 8) {
-			player.getDispatcher().sendGameMessage("You cannot trade while being a Iron Man.");
-			return false;
+		|| player.getPrivilegeLevel().getId() == 8) {
+		player.getDispatcher().sendGameMessage("You cannot trade while being a Iron Man.");
+		return false;
+		}
+        if (player.getPrivilegeLevel().getId() == 2) {
+		player.getDispatcher().sendGameMessage("Sorry, but you can't trade with Players.");
+		return false;
+		}
+        if (target.getPrivilegeLevel().getId() == 2) {
+        player.getDispatcher().sendGameMessage("Sorry, but you can't trade with Jagex Moderators.");
+        return false;
 		}
 		if (player.getInteractions().isPossiblePlayer(OptionButton.FOUR, target)) {
-			player.getInteractions().setCurrentTarget(target);
-			target.getInteractions().setCurrentTarget(player);
-			player.getWidgets().openCentralWidget(335, false);
-			target.getWidgets().openCentralWidget(335, false);
-			player.getInteractions().removePossiblePlayer(OptionButton.FOUR, target);
+		player.getInteractions().setCurrentTarget(target);
+		target.getInteractions().setCurrentTarget(player);
+		player.getWidgets().openCentralWidget(335, false);
+		target.getWidgets().openCentralWidget(335, false);
+		player.getInteractions().removePossiblePlayer(OptionButton.FOUR, target);
 		} else {
-			target.getDispatcher().sendMessage(new MessageEventContext(ChannelType.TRADE, "wishes to trade with you.", player.getName(), null));
-			target.getInteractions().addPossiblePlayer(OptionButton.FOUR, player);
-			player.getDispatcher().sendGameMessage("Sending trade request...");
+		target.getDispatcher().sendMessage(new MessageEventContext(ChannelType.TRADE, "wishes to trade with you.", player.getName(), null));
+		target.getInteractions().addPossiblePlayer(OptionButton.FOUR, player);
+		player.getDispatcher().sendGameMessage("Sending trade request...");
 		}
 		return true;
 	}
