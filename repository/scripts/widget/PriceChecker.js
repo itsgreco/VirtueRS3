@@ -5,13 +5,13 @@ var PriceCheckerOpen = Java.extend(Java.type('org.virtue.engine.script.listeners
 		var player = args.player;
 		
 		//Received if sub: parent=1477, parentSlot=426, ifID=206, options=0
-		api.openOverlaySub(player, 1008, 207, false);//Received if sub: parent=1477, parentSlot=431, ifID=207, options=0
+		api.openOverlaySub(player, 1008, Price_Checker_inventory_Interface, false);//Received if sub: parent=1477, parentSlot=431, ifID=207, options=0
 		api.sendInv(player, Inv.TRADE);
 		//Run client script: [8178], params=
 		api.runClientScript(player, 8865, [1]);//Run client script: [8865, 1], params=i
-		api.setWidgetEvents(player, 206, 5, 0, 54, 1086);//Received if events: if=206, comp=5, fromSlot=0, toSlot=54, events=1086
+		api.setWidgetEvents(player, Price_Checker_Interface, 5, 0, 54, 1086);//Received if events: if=206, comp=5, fromSlot=0, toSlot=54, events=1086
 		api.runClientScript(player, 150, ["Add-X<col=ff9040>", "Add-All<col=ff9040>", "Add-10<col=ff9040>", "Add-5<col=ff9040>", "Add<col=ff9040>", -1, 1, 7, 4, 93, 13565952]);//Run client script: [150, 13565952, 93, 4, 7, 1, -1, Add<col=ff9040>, Add-5<col=ff9040>, Add-10<col=ff9040>, Add-All<col=ff9040>, Add-X<col=ff9040>, , , , ], params=iiiiiisssssssss
-		api.setWidgetEvents(player, 207, 0, 0, 27, 2360382)//Received if events: if=207, comp=0, fromSlot=0, toSlot=27, events=2360382
+		api.setWidgetEvents(player, Price_Checker_inventory_Interface, 0, 0, 27, 2360382)//Received if events: if=207, comp=0, fromSlot=0, toSlot=27, events=2360382
 		api.runClientScript(player, 8862, [0, 2]);//Run client script: [8862, 2, 0], params=ii
 	}
 });
@@ -121,16 +121,16 @@ var PriceCheckerClose = Java.extend(Java.type('org.virtue.engine.script.listener
 /* Listen to the interface ids specified */
 var listen = function(scriptManager) {
 	var listener = new PriceCheckerOpen();
-	scriptManager.registerListener(EventType.IF_OPEN, 206, listener);
+	scriptManager.registerListener(EventType.IF_OPEN, Price_Checker_Interface, listener);
 	
 	listener = new PriceCheckerHandler();
-	scriptManager.registerListener(EventType.IF_BUTTON, 206, listener);
+	scriptManager.registerListener(EventType.IF_BUTTON, Price_Checker_Interface, listener);
 	
 	listener = new PriceCheckerInventory();
-	scriptManager.registerListener(EventType.IF_BUTTON, 207, listener);
+	scriptManager.registerListener(EventType.IF_BUTTON, Price_Checker_inventory_Interface, listener);
 	
 	listener = new PriceCheckerClose();
-	scriptManager.registerListener(EventType.IF_CLOSE, 206, listener);
+	scriptManager.registerListener(EventType.IF_CLOSE, Price_Checker_Interface, listener);
 };
 
 var PriceChecker = {
