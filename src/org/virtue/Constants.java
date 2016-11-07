@@ -90,6 +90,8 @@ public class Constants {
         public static final boolean MembersWorld = true;
         
         
+        public static final boolean Mysql = false;
+        
         
 	/**
 	 * Whether or not to lead GE Prices from a JSON File

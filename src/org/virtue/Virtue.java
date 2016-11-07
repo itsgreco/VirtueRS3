@@ -64,6 +64,7 @@ import org.virtue.game.parser.CachingParser;
 import org.virtue.game.parser.ClanIndex;
 import org.virtue.game.parser.ParserRepository;
 import org.virtue.game.parser.impl.ItemDestroyParser;
+import org.virtue.game.parser.impl.MySQLParser;
 import org.virtue.game.parser.impl.NewsDataParser;
 import org.virtue.game.parser.impl.NpcDropParser;
 import org.virtue.game.parser.impl.NpcSpawnParser;
@@ -282,45 +283,42 @@ public class Virtue {
 	 * @throws Exception 
 	 */
 	private void loadGame() throws Exception {
-		accountIndex = new XMLAccountIndex(properties);
-		
-		if (accountIndex instanceof CachingParser){
-			cachingParsers.add((CachingParser) accountIndex);
-		}
-		
-		event = new EventRepository();
-		event.load();
-		parser = new ParserRepository();
-		parser.load();
-		widget = new WidgetRepository();
-		widget.load();
-		
-		String scriptsFileDir = getProperty("scripts.dir", "./repository/scripts/");
-		scripts = new JSListeners(FileUtility.parseFilePath(scriptsFileDir), configProvider);
-		scripts.load();
-		
-		ClanIndex clanIndex = new XMLClanIndex(properties);
-		if (clanIndex instanceof CachingParser){
-			cachingParsers.add((CachingParser) clanIndex);
-		}
-		clans = new ClanManager();
-		clans.load(clanIndex);
-		
-		exchange = new GrandExchange();
-		exchange.load();
-		
-		controller = new MinigameProcessor();
-		controller.start();
-
-		String newsDataFile = getProperty("news.file", "repository/news.json");
-		NewsDataParser.loadJsonNewsData(FileUtility.parseFilePath(newsDataFile));
-		ItemDestroyParser.init();
-		SpecialAttackHandler.init();
-		ActionBar.init();
-		AbstractNPC.init();
-		NpcSpawnParser.loadNpcs();
-		NpcDropParser.loadNpcDrops();
-		DialogueHandler.handle();
+            if(Constants.Mysql) {
+            accountIndex = new MySQLParser(properties);
+            } else {
+            accountIndex = new XMLAccountIndex(properties);
+	    }
+	    if (accountIndex instanceof CachingParser){
+            cachingParsers.add((CachingParser) accountIndex);
+	    } 
+	    event = new EventRepository();
+	    event.load();
+	    parser = new ParserRepository();
+	    parser.load();
+	    widget = new WidgetRepository();
+	    widget.load();
+            String scriptsFileDir = getProperty("scripts.dir", "./repository/scripts/");
+	    scripts = new JSListeners(FileUtility.parseFilePath(scriptsFileDir), configProvider);
+	    scripts.load();
+	    ClanIndex clanIndex = new XMLClanIndex(properties);
+	    if (clanIndex instanceof CachingParser){
+            cachingParsers.add((CachingParser) clanIndex);
+	    }
+	    clans = new ClanManager();
+	    clans.load(clanIndex);
+	    exchange = new GrandExchange();
+	    exchange.load();
+	    controller = new MinigameProcessor();
+	    controller.start();
+	    String newsDataFile = getProperty("news.file", "repository/news.json");
+	    NewsDataParser.loadJsonNewsData(FileUtility.parseFilePath(newsDataFile));
+	    ItemDestroyParser.init();
+	    SpecialAttackHandler.init();
+	    ActionBar.init();
+	    AbstractNPC.init();
+	    NpcSpawnParser.loadNpcs();
+	    NpcDropParser.loadNpcDrops();
+	    DialogueHandler.handle();
 	}
 	
 	/**

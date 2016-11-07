@@ -65,6 +65,7 @@ import org.virtue.game.entity.player.stat.PlayerStat;
 import org.virtue.game.entity.player.stat.Stat;
 import org.virtue.game.entity.player.stat.StatManager;
 import org.virtue.game.entity.player.var.VarContainer;
+import org.virtue.game.parser.Parser;
 import org.virtue.game.parser.ParserDataType;
 import org.virtue.game.world.region.Tile;
 import org.virtue.network.protocol.message.ResponseTypeMessage;
@@ -81,7 +82,7 @@ import org.w3c.dom.NodeList;
  * @author Im Frizzy <skype:kfriz1998>
  * @since Sep 26, 2014
  */
-public class XmlParser {
+public class XmlParser implements Parser {
 	
 	/**
 	 * The {@link Logger} instance

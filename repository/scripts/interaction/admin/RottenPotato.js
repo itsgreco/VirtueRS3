@@ -6,7 +6,7 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		var slot = args.slot;
 		
 		if (!api.isAdmin(player)) {
-			chatplayer(player, "Eww! This was yuck! I don't think I want another bite.");
+			chatplayer(player, "NEUTRAL", "Eww! This was yuck! I don't think I want another bite.");
 			api.runAnimation(player, 18001);
 			api.delCarriedItem(player, objTypeId, 1);
 			return;
@@ -45,15 +45,22 @@ var RottenPotato = {
 				
 			}, "Bank Stats", function() {
 				api.openCentralWidget(player, 1691, false);
-				api.setWidgetText(player, 1691, 7, "1,333,333,700"); //Total Bank Value
+			var total = 0;
+			for (var slot=0; slot<28; slot++) {
+			var item = api.getItem(target, Inv.BANK, slot) || api.getItem(target, Inv.BACKPACK, slot)|| api.getItem(target, Inv.EQUIPMENT, slot);
+			var price = -1;
+		    if (item != null) {
+			price = api.getExchangeCost(item);
+			total += price * item.getAmount();
+			}
+			}
+			api.setWidgetText(player, 1691, 7, api.getFormattedNumber(total)); //Total Bank Value
 			}, "Send "+api.getName(target)+" to Botany Bay", function() {
-				multi2(player, "DEFINITELY SEND "+ api.getName(target) + " TO BOTANY BAY?",  "Yes", function () {
-					RottenPotato.requestLookup(player,target);
-				}, "No", function() {
-					
-				});
-			}, "Cancel", function() {
-				
+			multi2(player, "DEFINITELY SEND "+ api.getName(target) + " TO BOTANY BAY?",  "Yes", function () {
+			RottenPotato.requestLookup(player,target);
+			}, "No", function() {	
+		    });
+			}, "Cancel", function() {	
 			});
 		},
 		handleEatOption : function (player) {
@@ -114,12 +121,10 @@ var RottenPotato = {
 		},
 		//This function will be used to check if player logged out, when trying to send them to botany bay.
 		requestLookup : function (player,target) {
-
 				var hash = api.getUserHash(target);
 				if (hash != null) {
 					var targetPlayer = api.getWorldPlayerByHash(hash);
 					if (targetPlayer != null) {
-
 					var frame = 0;
 			   var Action = Java.extend(Java.type('org.virtue.game.entity.player.event.PlayerActionHandler'), {
 				   process : function (player) {

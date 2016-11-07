@@ -92,7 +92,8 @@ var Overlay = {
 			case 0://Hero
 				return api.getVarBit(player, 18995);
 			case 1://Customisations
-				return api.getVarBit(player, 29607);
+				//return api.getVarBit(player, 29607);
+				return;	
 			case 2://Powers
 				return api.getVarBit(player, 18997);
 			case 3://Adventures
@@ -123,6 +124,23 @@ var Overlay = {
 				break;
 			case 1://Customisations
 				api.setVarBit(player, 29607, tab);
+				switch (tab) {
+				case 1://Wardrobe
+				api.setVarp(player, 256, 4194274);
+				break;	
+                case 3://Animations
+				api.setVarp(player, 256, 4194276);
+				break;	
+                case 4://Appearance
+				api.setVarp(player, 256, 4194273);
+				break;	
+                case 5://Titles
+				api.setVarp(player, 256, 4194275);
+				break;		
+                case 6://Pets
+				api.setVarp(player, 256, 4194277);
+				break;				
+				}
 				break;
 			case 2://Powers
 				api.setVarBit(player, 18997, tab);

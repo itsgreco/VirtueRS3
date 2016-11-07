@@ -1,24 +1,3 @@
-/**
- * Copyright (c) 2014 Virtue Studios
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
 package org.virtue.game.parser.impl;
 
 import static com.sun.scenario.Settings.set;
@@ -34,6 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -73,14 +53,19 @@ import org.virtue.game.entity.player.stat.PlayerStat;
 import org.virtue.game.entity.player.stat.Stat;
 import org.virtue.game.entity.player.stat.StatManager;
 import org.virtue.game.entity.player.var.VarContainer;
+import org.virtue.game.parser.AccountIndex;
+import org.virtue.game.parser.AccountInfo;
 import org.virtue.game.parser.Parser;
 import org.virtue.game.parser.ParserDataType;
 import org.virtue.game.world.region.Tile;
 import org.virtue.network.protocol.message.ResponseTypeMessage;
 import org.virtue.network.protocol.message.login.LoginRequestMessage;
 import org.virtue.network.protocol.message.login.LoginTypeMessage;
+import org.virtue.utility.FileUtility;
 import org.virtue.utility.text.Base37Utility;
+import org.virtue.utility.text.UsernameUtility;
 import org.w3c.dom.Attr;
+import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -93,7 +78,7 @@ import org.w3c.dom.NodeList;
  * @author Sundays211
  * @since Nov 28, 2014
  */
-public class MySQLParser implements Parser {
+public class MySQLParser extends AccountIndex implements Parser {
 
 	/**
 	 * The {@link Logger} instance
@@ -111,7 +96,107 @@ public class MySQLParser implements Parser {
 	public MySQLParser() {
 		logger.info("Creating new MySQLParser instance");
 	}
+ 
+        private Map<Long, AccountInfo> hashLookup;
+        private Map<String, AccountInfo> emailLookup;
+        private Map<Long, AccountInfo> displayLookup;
+        public boolean needsSave () {
+		return needsSave;
+	}
+        private boolean needsSave;
+        
+        
+        public MySQLParser(Properties properties) throws Exception {
+		hashLookup = new HashMap<Long, AccountInfo>();
+		emailLookup = new HashMap<String, AccountInfo>();
+		displayLookup = new HashMap<Long, AccountInfo>();
+		load();
+	}
+        public  void load() throws Exception {
+             Class.forName("com.mysql.jdbc.Driver");
+	     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/runesource", "root", "");
+	     Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM characters");
+             try {         
+             while (rs.next()) {
+	     boolean locked = false;
+	     String email = rs.getString("email");;		
+	     long userhash = Long.parseLong(rs.getString("userhash"), 16);
+	     String display = rs.getString("displayname");
+	     String prevname = rs.getString("previousname");
+	     PrivilegeLevel rights = rights = PrivilegeLevel.forId(rs.getInt("server_rights"));
+	     addAccount(email, userhash, display, prevname, locked, rights);
+             }
+	     } catch (Exception ex) {
+	     logger.warn("Error loading account index definition ", ex);
+	     }       
+	     logger.info("Found " + hashLookup.size() + " Account(s)");
+	}
+	public void flush(Object object) {
+		if (!needsSave) {
+			return;
+		}
+		try {	
+                  for (AccountInfo acc : hashLookup.values()) {
+                   Player player = (Player) object;
+                  String myUrl = "jdbc:mysql://localhost/runesource";
+                  Class.forName("org.gjt.mm.mysql.Driver");
+                  Connection conn = DriverManager.getConnection(myUrl, "root", "");
+                  String query = "UPDATE characters SET userhash = ?, displayname = ?, server_rights = ? ";
+                  PreparedStatement preparedStmt = conn.prepareStatement(query);
+                  preparedStmt.setString(1, ""+ Long.toString(acc.getUserHash(), 16) +"");
+                  preparedStmt.setString(2, ""+ acc.getDisplayName() +"");
+                  preparedStmt.setInt(3, acc.getType().getId());     
+                  preparedStmt.executeUpdate();
+                  TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			transformerFactory.setAttribute("indent-number", 2);
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			logger.info("Saved account index. Index now countains " + hashLookup.size() + " account(s)");
+                  }
+		} catch (Exception ex) {
+			logger.error("Failed to save account index", ex);
+		}
+                
+		needsSave = false;
+	}
+        
+        
+        protected void addAccount (AccountInfo info) {
+		hashLookup.put(info.getUserHash(), info);
+		emailLookup.put(formatEmail(info.getEmail()), info);
+		displayLookup.put(Base37Utility.encodeBase37(info.getDisplayName()), info);	
+	}
+        private String formatEmail (String email) {
+		return email == null ? null : UsernameUtility.formatForProtocol(email);//email.replaceAll("\\s+", "").toLowerCase()
+	}
+        public AccountInfo lookupByDisplay (String display) {
+		if (display == null || display.length() > 12) {
+			return null;
+		}
+		return displayLookup.get(Base37Utility.encodeBase37(display));
+	}
+	@Override
+	public AccountInfo lookupByUsername (String name) {
+		if (name == null || name.length() > 12) {
+			return null;
+		}
+		return lookupByHash(Base37Utility.encodeBase37(name));
+	}
+	@Override
+	public AccountInfo lookupByHash (long hash) {
+		return hashLookup.get(hash);
+	}
+	@Override
+	public AccountInfo lookupByEmail (String email) {
+		return emailLookup.get(formatEmail(email));
+	}
+    @Override
+    protected void updateAccount(AccountInfo info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+        
 	/**
 	 * Returns the {@link MySQLParser} instance
 	 */
@@ -136,63 +221,33 @@ public class MySQLParser implements Parser {
     {
 
 			switch(type) {
+                        case FRIEND:
+			case IGNORE:
+			case INV:
+			case SKILL:
+			case EXCHANGE:
+			case LAYOUT:
+			case CLAN_SETTINGS:
 			case CHARACTER:
-                            
-                            Player player = (Player) object;
-                            
-				try {
-					
- 
-      String myUrl = "jdbc:mysql://localhost/runesource";
-      Class.forName("org.gjt.mm.mysql.Driver");
-      Connection conn = DriverManager.getConnection(myUrl, "root", "");
-
+                        Player player = (Player) object;  
+			try {	
+                  String myUrl = "jdbc:mysql://localhost/runesource";
+                  Class.forName("org.gjt.mm.mysql.Driver");
+                  Connection conn = DriverManager.getConnection(myUrl, "root", "");
                   String query = "UPDATE characters SET username = ? ,gender = ? ,location = ?  WHERE username = '" + player.getUsername() + "' ";
                   PreparedStatement preparedStmt = conn.prepareStatement(query);
-                  
                   preparedStmt.setString(1, ""+ player.getUsername() +"");
                // preparedStmt.setString(2, ""+ player.getDisplay() +"");
-                  
                   preparedStmt.setInt(2, player.getModel().getGender().ordinal());
                   preparedStmt.setString(3, "" + player.getCurrentTile().getX() + "," + player.getCurrentTile().getY() + "," + player.getCurrentTile().getPlane() + "");
                   preparedStmt.executeUpdate();
-                 
-					} catch (Exception e) {
-			System.out.println("test");
+		  } catch (Exception e) {
+		System.out.println("test");
 		}
-				break;
-			case FRIEND:
-				
-				break;
-			case IGNORE:
-				
-					
-				break;
+	        break;
 			case VAR:
-				
-				break;
-			case INV:
-				
-				break;
-			case SKILL:
-				
-				break;
-			case EXCHANGE:
-				
-						
-				break;
-			case LAYOUT:
-				
-				break;
-			case CLAN_SETTINGS:
-				
-				
-				break;
+                        break;
 			}
-			         
-                        
-                        
-                        
                         } catch (Exception e) { }
 	}
 
@@ -217,8 +272,6 @@ public class MySQLParser implements Parser {
                                 ResultSet rs = stmt.executeQuery("SELECT * FROM characters WHERE username = '" + request.getUsername() + "'");
 				try {         
                                        while (rs.next()) {
-					
-                                           
 						//String display = element.getElementsByTagName("display").item(0).getTextContent();
                                          
 						String password = rs.getString("password");
@@ -228,10 +281,8 @@ public class MySQLParser implements Parser {
                                                 String[] loc = rs.getString("location").split(",");
 						int posX = Integer.parseInt(loc[0]);
 						int posY = Integer.parseInt(loc[1]);
-						int posZ = Integer.parseInt(loc[2]);
-						
+						int posZ = Integer.parseInt(loc[2]);	
 						int mode = 2;
-						
 						boolean sheathe = false;
 						
 						long login = Long.parseLong("1463147263931");
@@ -239,11 +290,9 @@ public class MySQLParser implements Parser {
 						long clanHash = 0L;
 						int mute = rs.getInt("mute");
 						int ban = rs.getInt("banned");
-
                                               if (ban == 1) {
 							return ResponseTypeMessage.STATUS_BANNED.getCode();
 						}
-					
 						int energy = rs.getInt("run_energy");
 
 						int keys = 55;
@@ -796,4 +845,9 @@ public class MySQLParser implements Parser {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    
+
+
+
 }

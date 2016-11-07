@@ -37,9 +37,40 @@ var inter35 = 35;
 var inter105 = 105;
 var Price_Checker_Interface = 206;
 var Price_Checker_inventory_Interface = 207;
+
+
+
+var Clan_Noticeboard_Broadcast_Interface = 701;
+var PVP_Board_Interface = 702;
+var Building_Construction_Interface = 703;
+var Player_Safety_Test_Interface = 704;
+var Player_Safety_Test2_Interface = 705;
+var Player_Safety_Test3_Interface = 707;
+var Player_Safety_Test4_Interface = 708;
+var Player_Safety_Exam_101_Interface = 709;
+var Player_Safety_Test5_Interface = 710;
+var Golem_Construction_Interface = 718;
+var Operating_Your_Incubator_Interface = 719;
+var Reinalds_Smithing_Emporium_Interface = 725;
+var Yrsas_Shoe_Store_Interface = 728;
 var Thessalias_Makeovers_Interface = 729;
-
-
+var Fist_Of_Guthix_Reward_Shop_Interface = 732;
+var Fairy_Rings_Interface = 734;
+var Clans_In_The_Area_Interface = 735;
+var Pick_A_Kitten_Interface = 737;
+var TzHaar_Numbers_Interface = 739;
+var Faction_Strategy_Vote_Interface = 747;
+var Place_Your_Vote_Interface = 748;
+var Deaths_Store_Interface = 754;
+var Draughts_Options_Interface = 756;
+var Canoe_Journey_Interface = 758;
+var Bank_Pin_Numbers_Interface = 759;
+var Farming_Store_Interface = 761;
+var Potion_Store_Interface = 763;
+var Squad_Recruitment_Interface = 770;
+var Runecrafting_Guild_Rewards_Interface = 779;
+var Runecrafting_Altars_Interface = 780;
+var Shooting_Star_Interface = 782;
 var Circus_Rewards_Interface = 785;
 var Circus_Performance_Equipment_Interface = 786;
 var Circus_Performance_Scoreboard_Interface = 788;
@@ -72,7 +103,7 @@ var Conflict_Scenario_Interface = 858;
 var Squad_Commands_Interface = 859;
 var Hoard_Scenario_Interface = 861;
 var Investment_Credit_Exchange_Interface = 862;
-var Squad_Recruitment_Interface = 863;
+var Squad_Recruitment2_Interface = 863;
 var Select_Ball_Configuration_Interface = 864;
 var Pet_House_Interface = 879;
 var Follower_Left_Click_Options_Interface = 880;
