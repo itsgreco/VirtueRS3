@@ -11,7 +11,7 @@ var OverlayListener = Java.extend(Java.type('org.virtue.engine.script.listeners.
 			break;
 		case 71://Logout
 			api.setVarp(player, 3813, 6);
-			api.openWidget(player, 1477, 853, 26, true);
+			api.openWidget(player, 1477, 871, 26, true);
 			return;
 		case 496://Overlay tab switch
 			switch (args.slot) {

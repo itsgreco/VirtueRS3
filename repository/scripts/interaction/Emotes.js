@@ -13,7 +13,7 @@ var EmotesListener = Java.extend(Java.type('org.virtue.engine.script.listeners.E
 			switch (args.component) {
 			case 8://Run emote
 				if (api.isRunningAnim(player)) {
-					api.sendMessage(player, "You're already doing an emote!", MesType.GAME_SPAM);					
+					api.sendMessage(player, "You're already doing an emote!");					
 				} else {
 					Emotes.processEmoteClick(player, args.slot);
 				}				
@@ -137,7 +137,7 @@ var Emotes = {
 				api.runAnimation(player, 1131);
 				return;
 			case 25://Climb Rope
-				api.runAnimation(player, 1130);
+				api.runAnimation(player, 1130);//varp 461 -1 or 15 unlocks all mime emotes
 				return;
 			case 26://Lean
 				api.runAnimation(player, 1129);
@@ -209,7 +209,7 @@ var Emotes = {
 				api.setSpotAnim(player, 1, 1973);
 				return;
 			case 44://Give Thanks
-				//TODO give thanks
+				this.GiveThanks(player);
 				return true
 			case 45://Eggy Days
 				api.runAnimation(player, 11542);
@@ -230,13 +230,8 @@ var Emotes = {
 				api.runAnimation(player, api.isFemale(player) ? 15034 : 15033);
 				api.setSpotAnim(player, 1, 2930);
 				return true
-			case 50://TODO Add tick processing
-				api.runAnimation(player, 15104);
-				player.queueUpdateBlock(new SpotAnimationBlock(1, 1287, 20));
-				api.runAnimation(player, 15106);
-				api.runAnimation(player, 15108);
-				player.queueUpdateBlock(new SpotAnimationBlock(1, 1287, 40));
-				api.runAnimation(player, 15105);
+			case 50://SealOfApproval
+		     	this.SealOfApproval(player);
 				return true
 			case 51://Cat fight
 				api.runAnimation(player, 2252);
@@ -274,8 +269,8 @@ var Emotes = {
 				api.setSpotAnim(player, 1, 365);
 				return true
 			case 62://Snow
-				api.runAnimation(player, 15357);
-				api.setSpotAnim(player, 1, 1391);
+				api.runAnimation(player, 2417);
+				api.setSpotAnim(player, 1, 364);
 				return true
 			case 63://Invoke Spring
 				api.runAnimation(player, 15357);
@@ -464,6 +459,8 @@ var Emotes = {
 				api.runAnimation(player, 25325);
 				api.setSpotAnim(player, 1, 5293);
 				return;
+			//case 187:
+			//	return;
 			case 196://15 year
 			api.sendMessage(player, "todo add.");
 				return;		
@@ -663,7 +660,34 @@ var Emotes = {
 				return;
 			}
 		},
-		
+		SealOfApproval : function (player) {
+					api.setSpotAnim(player, 1, 1287);
+					runAnimation(player, 15104, function () {
+					player.getModel().setRender(Render.NPC);
+					player.getModel().setNPCId(13255);
+					player.getModel().refresh();
+                   	runAnimation(player, 15106, function () {				
+					player.getModel().setRender(Render.PLAYER);
+					player.getModel().refresh();
+					api.setSpotAnim(player, 1, 1287);
+				    api.runAnimation(player, 15105);
+	                });
+					});		
+		},	
+		GiveThanks : function (player) {
+					api.setSpotAnim(player, 1, 86);
+					runAnimation(player, 10994, function () {
+					player.getModel().setRender(Render.NPC);
+					player.getModel().setNPCId(8499);
+					player.getModel().refresh();
+					runAnimation(player, 10996, function () {
+					player.getModel().setRender(Render.PLAYER);
+					player.getModel().refresh();
+					api.setSpotAnim(player, 1, 86);
+					api.runAnimation(player, 10995);
+	                });
+					});					
+		},					
 		runCompCape : function (player) {
 			var frame = 0;
 			var Action = Java.extend(Java.type('org.virtue.game.entity.player.event.PlayerActionHandler'), {
@@ -672,14 +696,14 @@ var Emotes = {
 						api.runAnimation(player, 356);
 						api.setSpotAnim(player, 1, 307);
 					} else if (frame == 3) {
-						player.getAppearance().setRender(Render.NPC);
-						player.getAppearance().setNPCId(1830);
-						player.getAppearance().refresh();
+						player.getModel().setRender(Render.NPC);
+						player.getModel().setNPCId(1830);
+						player.getModel().refresh();
 						api.runAnimation(player, 1174);
 						api.setSpotAnim(player, 1, 1443);
-					} else if (frame == 15) {
-						player.getAppearance().setRender(Render.PLAYER);
-						player.getAppearance().refresh();
+					} else if (frame == 14) {
+						player.getModel().setRender(Render.PLAYER);
+						player.getModel().refresh();
 						api.runAnimation(player, 1175);
 					}
 					frame++;
@@ -698,13 +722,13 @@ var Emotes = {
 			
 			api.setSpotAnim(player, 1, 307);
 			runAnimation(player, 356, function () {
-				player.getAppearance().setRender(Render.NPC);
-				player.getAppearance().setNPCId(3372);
-				player.getAppearance().refresh();
+				player.getModel().setRender(Render.NPC);
+				player.getModel().setNPCId(3372);
+				player.getModel().refresh();
 				api.setSpotAnim(player, 1, 1443);
 				runAnimation(player, 1174, function () {
-					player.getAppearance().setRender(Render.PLAYER);
-					player.getAppearance().refresh();
+					player.getModel().setRender(Render.PLAYER);
+					player.getModel().refresh();
 					api.runAnimation(player, 1175);
 				});
 			});

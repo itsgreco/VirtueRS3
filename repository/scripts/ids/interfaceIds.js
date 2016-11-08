@@ -254,5 +254,6 @@ var MemberName_Resource_Info_Interface = 1257;
 var Warning_Interface = 1262;
 var Shop_Interface = 1265;
 //var chat_Interface = 1529;
+var World_Map_Interface = 1422;
 var Jmod_Toolbox_Interface = 1610;
 
