@@ -79,6 +79,21 @@ var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 		case 8:
 			api.openCentralWidget(player, 1709, false);
 			return;
+		case 9://halloween 2010 remake
+            api.spawnLocation(api.createLocation(31845, 3011, 3269, 0, 10, 0));//portal
+			api.spawnLocation(api.createLocation(62430, 3010, 3269, 0, 10, 0));//pumpkin
+			api.spawnLocation(api.createLocation(32034, 3014, 3269, 0, 10, 2));//pumpkin
+			api.spawnLocation(api.createLocation(32034, 3013, 3271, 0, 10, 2));//pumpkin
+			api.spawnLocation(api.createLocation(32044, 3010, 3272, 0, 10, 2));//pumpkin
+			api.spawnLocation(api.createLocation(14620, 3014, 3270, 0, 10, 0));//mushrooms
+			api.spawnLocation(api.createLocation(14620, 3009, 3270, 0, 10, 0));//mushrooms
+			api.spawnLocation(api.createLocation(14592, 3013, 3270, 0, 10, 0));//mushrooms
+			//trees removed
+			api.spawnLocation(api.createLocation(32947, 3010, 3274, 0, 10, 1));
+			api.spawnLocation(api.createLocation(32947, 3009, 3273, 1, 10, 1));
+			api.spawnLocation(api.createLocation(32947, 3014, 3273, 0, 10, 1));
+			api.spawnLocation(api.createLocation(32947, 3013, 3272, 1, 10, 1));
+            return;	
 		}
 	}
 });

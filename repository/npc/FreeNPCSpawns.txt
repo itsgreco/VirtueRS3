@@ -32,12 +32,20 @@
 2254 - 3087 3254 1 4 //wise old mans bed
 7910 - 417 681 0  //Muncher in deaths place
 4579 - 3092 3283 0 //potter
+////////////////////////DarkWizardsTower////////////////////////
+895 - 2925 3355 0 4 //Boy (Quest Witch's House)
 ////////////////////////Varrock//////////////////////////////////////
 5916 - 3253 3429 0 //Cleaner
 ////////////////////////////Random Events/////////////////////////////////////////
 16851 - 3420 4777 0 4 //Evil Bob
 16852 - 3423 4777 0 4 //Servant
 
+//mime
+1056 - 2011 4762 0 4 //Mime //may have to add in a script.js
+1057 - 2015 4756 0 4 //Strange watcher 1
+1058 - 2012 4754 0 4 //Strange watcher 2
+1059 - 2006 4755 0 4 //Strange watcher 3
+//
 
 16857 - 2599 4775 0  //freaky forester
 //pheasants
@@ -69,41 +77,6 @@
 6129 - 2470 3185 0 4 //Creakyknees
 6128 - 2465 3183 0 2 //Smellytoes
 6127 - 2467 3183 0 6 //Greasycheeks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

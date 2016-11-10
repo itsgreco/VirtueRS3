@@ -36,6 +36,7 @@ var CustomisationOpenListener = Java.extend(Java.type('org.virtue.engine.script.
 		api.setWidgetEvents(player, 1311, 525, 0, 4, 2);
 		api.runClientScript(player, 6874, []);
 		api.hideWidget(player, 1311, 190, true);
+		//api.hideWidget(player, 1311, 448, false);//shows apply button
 	}
 });
 
@@ -45,13 +46,11 @@ var CustomisationButtonListener = Java.extend(Java.type('org.virtue.engine.scrip
 		//api.getVarBit(player, 673);	
 		api.sendMessage(player, "Inter: "+args+", Component: " + args.component + ", Option " + args.button);
 		switch (args.component) {
-		case 507://Show all items
-			api.setVarBit(player, 678, 1);
-			return true;
-		case 74://Show owned items
-			api.setVarBit(player, 678, 0);
-			return true;
-		case 92://Apply
+		case 515://Show all items
+		var enabled = api.getVarBit(player, 678) == 1;
+		api.setVarBit(player, 678, enabled ? 0 : 1);
+		return true;
+		case 454://Apply
 			Customisation.applyCustomStyles(player);
 			return true;
 		case 1:
@@ -84,10 +83,10 @@ var listen = function(scriptManager) {
 	scriptManager.registerListener(EventType.IF_OPEN, 1311, listener);
 	
 	listener = new CustomisationButtonListener();
-	scriptManager.registerListener(EventType.IF_BUTTON, 900, listener);
+	scriptManager.registerListener(EventType.IF_BUTTON, 1311, listener);
 	
 	listener = new CustomisationCloseListener();
-	scriptManager.registerListener(EventType.IF_CLOSE, 900, listener);
+	scriptManager.registerListener(EventType.IF_CLOSE, 1311, listener);
 };
 //Male hairstyles = 2339
 //Female hairstyles = 2342
