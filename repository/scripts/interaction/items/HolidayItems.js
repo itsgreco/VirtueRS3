@@ -7,6 +7,12 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 		if(event == EventType.OPHELD1) {
 		switch (objTypeId) {
+		case 11950://Snow globe
+		api.openCentralWidget(player, 659, false);
+		return;	
+		case 22325://Dance floor manual (haloween 2011)
+		api.openCentralWidget(player, Dance_Floor_Pattern_Sequencing_Interface, false);
+		return;	
 		case 20078://Heimland games souvenir
 	//	api.runAnimation(player, 12913);
 		//api.runAnimation(player, 15105);
@@ -157,7 +163,7 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 /* Listen to the item ids specified */
 var listen = function(scriptManager) {
-	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867,14742 ];
+	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867,14742,22325,11950];
 	var itemListener = new ItemListener();
 	for (var i in ids) {
 		scriptManager.registerListener(EventType.OPHELD1, ids[i], itemListener);

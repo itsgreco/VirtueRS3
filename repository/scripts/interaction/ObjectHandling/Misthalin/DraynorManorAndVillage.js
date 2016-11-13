@@ -6,7 +6,6 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		if (api.isPaused(player)) {
 			return false;
 		}
-		
 		switch (locTypeId) {
             case 75852://Trapdoor old xmas event
 			//todo add knocking sound
@@ -14,13 +13,16 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			 //todo add get lost sound
 		    });	 
 			return true;
+		    case 5116://Trapdoor (Mysterious old man house)
+			chatnpc(player, 16873, "NEUTRAL", "Keep out of my basement!", function () {
+			});//varp 3524 32772 to enter
+		    return true;
 			case 96780:
 			case 96781:
 			api.runAnimation(player, 23603, function () {
 			api.teleportEntity(player, 414, 652, 0);
 			});	 
 	        return true;
-			
 			case 96782:
 			case 96783:
 			api.runAnimation(player, 23603, function () {
@@ -44,7 +46,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [75852,96780,96781,96782,96783];
+	var locs = [75852,96780,96781,96782,96783,5116];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);

@@ -57,11 +57,11 @@ var EquipmentButtonListener = Java.extend(Java.type('org.virtue.engine.script.li
 				player.getDispatcher().sendHideWidget(1448, 1, true);*/
 				return;
 			case 7:
-				api.openCentralWidget(player, 17, false);
-				api.setWidgetEvents(player, 17, 18, 1024, 14, 1024);
-				api.setWidgetEvents(player, 17, 17, 1024, 47, 1024);
-				api.setWidgetEvents(player, 17, 20, 1024, 47, 1024);
-				api.setWidgetEvents(player, 17, 22, 1024, 47, 1024);
+				api.openCentralWidget(player, 1626, false);
+				//api.setWidgetEvents(player, 1626, 18, 1024, 14, 1024);
+				//api.setWidgetEvents(player, 1626, 17, 1024, 47, 1024);
+		    	//api.setWidgetEvents(player, 1626, 20, 1024, 47, 1024);
+				//api.setWidgetEvents(player, 1626, 22, 1024, 47, 1024);
 				return;
 			case 2:
 				api.openCentralWidget(player, 1178, false);

@@ -92,7 +92,7 @@ public class DefaultVars {
 		varps[108] = -2147483648;
 		varps[110] = 134217728;
 		varps[111] = 10000;
-		varps[115] = 5632;
+		varps[115] = 4608;//quest filter
 		varps[120] = -1;
 		varps[126] = 536870912;
 		varps[128] = 67108864;
@@ -1258,8 +1258,8 @@ public class DefaultVars {
 		varps[5939] =  16777216;
 		varps[5945] = 32;
 		varps[5962] =  -1242891284;
-        varps[5963] =  -1;//15 year celebration. will add all statues at fally 
-        varps[5964] =  -1;//15 year emote unlock
+                varps[5963] =  -1;//15 year celebration. will add all statues at fally 
+                varps[5964] =  -1;//15 year emote unlock
 	}
 
 	public static void setCreationVarps(Object[] varps) {

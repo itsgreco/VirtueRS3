@@ -22,10 +22,20 @@ var QuestListListener = Java.extend(Java.type('org.virtue.engine.script.listener
 				api.sendMessage(player, "TODO: Find the right varbit for hide done");
 				//var enabled = api.getVarBit(player, 317) == 1;
 				//api.setVarBit(player, 317, enabled ? 0 : 1);
-				return;
+		    return;
 			case 40://Category
-				api.setVarBit(player, 315, args.slot);
-				return;
+			api.setVarBit(player, 315, args.slot);
+			switch (args.slot) {
+			case 0:	
+			var enabled = api.getVarBit(player, 317) == 1;
+			api.setVarBit(player, 317, enabled ? 0 : 1);
+		    return;
+			case 1:	
+			return;
+			case 2:	
+			return;
+			}
+			return;
 			case 17:
 				switch (args.button) {
 				case 1:
