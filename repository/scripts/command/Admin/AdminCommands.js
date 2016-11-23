@@ -12,6 +12,12 @@ var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 		var player = scriptArgs.player;
 		var args = scriptArgs.cmdArgs;
 		switch (syntax) {
+		case "1u":
+			api.teleportEntityBy(player, 0, 0, 1);
+			return;
+		case "1d":
+			api.teleportEntityBy(player, 0, 0, -1);
+			return;	
 		case "bc":
 			if (args.length < 1) {
 				sendCommandResponse(player, "<col=0099CC>ERROR! Message is to short or needs a space</col>", scriptArgs.console);
@@ -278,7 +284,16 @@ var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 			return;
 		case "xtest":
 			api.openCentralWidget(player, 1691, false);
-			api.setWidgetText(player, 1691, 7, "1,333,333,700"); //Total Bank Value
+			var total = 0;
+			for (var slot=0; slot<28; slot++) {
+				var item = api.getItem(player, Inv.BANK, slot);
+				var price = -1;
+				if (item != null) {
+					price = api.getExchangeCost(item);
+					total += price * item.getAmount();
+				}
+			}
+			api.setWidgetText(player, 1691, 7, api.getFormattedNumber(total)); //Total Bank Value
 			//player.getWidgets().openWidget(1477, 503, 1418, true);
 		}
 	}
@@ -290,7 +305,7 @@ var listen = function(scriptManager) {
 			"root", "widget", "if", "priceReload", "reloadPrice", "adr", "hair",
 			"hairstyle", "reloadNPCDefs", "rls", "rend", "render", "glow", "spot", "spotanim",
 			"adminroom", "god", "normal", "anim", "devTitle", "removeTitle", "uptime", "rendanim",
-			"loc", "location", "object", "reloadNPCDrops", "ring", "testRing", "setKey","xtest"];
+			"loc", "location", "object", "reloadNPCDrops", "ring", "testRing", "setKey","xtest" ,"1u","1d"];
 	var listener = new EventListener();
 	for (var i in commands) {
 		scriptManager.registerListener(EventType.COMMAND_ADMIN, commands[i], listener);

@@ -103,6 +103,15 @@ var Log = {
 		fireID : 92903,
 		duration : 200 //2 minutes
 	}
+	//BONFIRE3 : { //big one from lum crater  in rsps rev 875
+	//	level : 1,
+	//	xp : 40,
+	//	fireID : 1000190,//ids 86503 (1000190 - anim 15744)
+	//	duration : 200 //2 minutes
+	//}
+	
+	
+	
 }
 
 var LogListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {

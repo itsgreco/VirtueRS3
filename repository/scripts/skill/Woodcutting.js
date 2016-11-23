@@ -248,8 +248,7 @@ var TreeListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 var listen = function(scriptManager) {
 	Woodcutting.loadTrees();
 	var listener = new TreeListener();
-	var locs = [33878, 38786, 61192, 47600, 38627, 61191, 38783, 38731, 46322, 46320, 46324, 9387, 9355, 87516, 87533];
-	
+	var locs = [33878, 38786, 61192, 47600, 38627, 61191, 38783, 38731, 46322, 46320, 46324, 9387, 9355, 87516, 87533,92442,92440];
 	for (var i in Woodcutting.treeRegistry) {
 		locs.push(Woodcutting.treeRegistry[i].tree);
 	}
@@ -340,8 +339,10 @@ var Woodcutting = {
 			
 			
 			this.registerTree(TreeType.YEW, 38755, 38759);
+			this.registerTree(TreeType.YEW, 92442, 92443);
 			
 			this.registerTree(TreeType.MAGIC, 63176, 63179);
+			this.registerTree(TreeType.MAGIC, 92440, 92441);
 		},
 		registerTree : function (type, treeId, stumpId) {
 			if (stumpId === undefined || stumpId === -1) {
