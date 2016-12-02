@@ -32,7 +32,7 @@ var listen = function(scriptManager) {
 	scriptManager.registerListener(EventType.IF_BUTTON, 590, listener);
 	scriptManager.registerListener(EventType.IF_OPEN, 590, listener);
 };
-
+// varp 461 for thanks giving emote
 var Emotes = {
 		processEmoteClick : function (player, slot) {
 			switch(slot) {
@@ -392,8 +392,8 @@ var Emotes = {
 				api.setSpotAnim(player, 1, 3252);
 				return true
 			case 119://crab transform
-				api.runAnimation(player, api.isFemale(player) ? 17213 : 17212);
-				api.setSpotAnim(player, 1, 3257);
+				//api.runAnimation(player, api.isFemale(player) ? 17213 : 17212);
+				//api.setSpotAnim(player, 1, 3257);
 				return true
 			case 120://truster stomp
 				api.runAnimation(player, 17801);

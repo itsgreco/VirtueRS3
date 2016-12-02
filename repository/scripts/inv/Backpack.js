@@ -71,8 +71,6 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
 			api.sendInv(player, Inv.BACKPACK);//Client backpack is out of sync; re-synchronise it
 			return;
 		}
-		
-		
 		if (args.tointerface = 1477) {
           switch (args.tocomponent) {
              case 13: 
@@ -83,8 +81,8 @@ var BackpackDragListener = Java.extend(Java.type('org.virtue.engine.script.liste
 		     Backpack.destroyItem(player, item, slot);
 		     } else if (opString == "Discard") {
 		     Backpack.discardItem(player, item, slot);
-                     } else{
-                     api.sendMessage(player, "error tell admin");
+             } else{
+             api.sendMessage(player, "error tell admin");
                      }
 		     return;
                 }  
@@ -210,11 +208,6 @@ var Backpack = {
 			//The item you are about to drop has high value.
 			//I wish to drop it.
 			//I wish to keep it.
-			
-			//if (item != 4577) {
-         //       api.delItem(player, Inv.BACKPACK, api.getId(item), 1, slot);
-		//		api.sendMessage(player, "Too late - it's gone!");
-		//	}
              if (item != null) {
 				api.dropItem(api.getCoords(player), api.getId(item), api.getCount(item), player);
 				api.setInvSlot(player, Inv.BACKPACK, slot, null);
@@ -224,8 +217,7 @@ var Backpack = {
 		destroyItem : function (player, item, slot) {
 			destroyItem(player, item, slot, function () {
 			api.setInvSlot(player, Inv.BACKPACK, slot, null);
-			});  
-                        
+			});              
 		},
 		
 		discardItem : function (player, item, slot) {
@@ -296,11 +288,24 @@ var Backpack = {
 						"slot" : slot
 				};
 				api.invokeEvent(eventType, itemId, args);
-			} else if (eventType == EventType.OPHELD2 && (opString == "Wear" || opString == "Wield")
-					&& configApi.objWearpos(itemId) != -1) {
+				
+			} else if (itemId == 2422) {
+            api.delItem(player, Inv.BACKPACK, api.getId(item), 1, slot);
+			api.sendMessage(player, "Pleae send a bug report to Jagex telling them how you got that hat.");
+            return;
+			} else if (eventType == EventType.OPHELD2 && (opString == "Wear" || opString == "Wield")&& configApi.objWearpos(itemId) != -1) {
 				WornEquipment.wearItem(player, item, slot);
-			} else if (eventType == EventType.OPHELD5 
-					&& (opString == "Drop" || opString == "Destroy" || opString == "Discard")) {
+			} else if (eventType == EventType.OPHELD5 && (opString == "Drop" || opString == "Destroy" || opString == "Discard")) {
+				if (itemId == 5733) {
+                api.delItem(player, Inv.BACKPACK, api.getId(item), 1, slot);
+				api.sendMessage(player, "Too late - it's gone!");
+                return;
+			    }
+				if (itemId == 2422) {
+                api.delItem(player, Inv.BACKPACK, api.getId(item), 1, slot);
+				api.sendMessage(player, "Pleae send a bug report to Jagex telling them how you got that hat.");
+                return;
+			    }
 				if (opString == "Drop") {
 					this.dropItem(player, item, slot);
 				} else if ("Destroy") {

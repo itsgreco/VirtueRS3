@@ -62,8 +62,20 @@ public enum ContainerState {
 	IFFIE_CUSTOME_SHOP_MALE(683, true, false),
 	IFFIE_CUSTOME_SHOP_FEMALE(684, true, false),
 	ALISON_ELMSHAPERS_FLETCH_SHOP(658, true, false),
+        CULINAROMANCER_CHEST(375, true, false), //RFD Completed
 	CULINAROMANCER_CHEST_FOOD(365, true, false),
-	
+        TZHAAR_CITY_SHOP(325, true, false),
+	OLD_EVENT_SHOP(448, true, false),
+	HOLIDAY_CHEST(453, true, false),
+	LUMBRIDGE_GEN_STORE_FREE_STOCK(553, true, false),
+	BOBS_AXES_FREE_STOCK(554, true, false),
+	VARROCK_SWORD_FREE_STOCK(555, true, false),
+	LOWES_ARCHERY_FREE_STOCK(556, true, false),
+	AUBURYS_FREE_STOCK(557, true, false),
+	LUMBRIDGE_FISH_STORE(562, true, false),
+	LUMBRIDGE_FISH_STORE_FREE(561, true, false),
+	SUMMONING_SHOP_1(628, true, false),
+	SUMMONING_SHOP_FREE(629, true, false),
 	
 	
 	
@@ -89,10 +101,6 @@ public enum ContainerState {
 	 * Note that there should not be any empty slots in this container between the first item and the last item, so call {@link ItemContainer#shift(boolean) ItemContainer.shift(true)} every time you remove an item.
 	 */
 	BANK(95, true, true),
-	TZHAAR_CITY_SHOP(325, true, false),
-	CULINAROMANCER_CHEST(375, true, false), //RFD Completed
-	OLD_EVENT_SHOP(448, true, false),
-	HOLIDAY_CHEST(453, true, false),
 	EXCHANGE_OFFER_0(517, true, true),
 	EXCHANGE_OFFER_1(518, true, true),
 	EXCHANGE_OFFER_2(519, true, true),
@@ -112,21 +120,14 @@ public enum ContainerState {
 	LOAN_RETURN(540, false, true),
 	LOAN_OFFER(541, false, false),
 	
-	LUMBRIDGE_GEN_STORE_FREE_STOCK(553, true, false),
-	BOBS_AXES_FREE_STOCK(554, true, false),
-	VARROCK_SWORD_FREE_STOCK(555, true, false),
-	LOWES_ARCHERY_FREE_STOCK(556, true, false),
-	AUBURYS_FREE_STOCK(557, true, false),
-	LUMBRIDGE_FISH_STORE(562, true, false),
-	LUMBRIDGE_FISH_STORE_FREE(561, true, false),
+	
 	
 	/**
 	 * The player's money pouch. Only has one slot, which contains the coins held by the player.
 	 */
 	MONEY_POUCH(623, false, true),
 	
-	SUMMONING_SHOP_1(628, true, false),
-	SUMMONING_SHOP_FREE(629, true, false),
+       
 	
 	/**
 	 * Contains the items worn by the player being inspected

@@ -43,6 +43,17 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			case 69791:
 			api.sendMessage(player, "West into Lumbridge.");
 			return true;/////////////////////end of sign posts
+			case 55301:
+			api.openCentralWidget(player, 205, false);
+			api.setWidgetText(player, 205, 49, "Combat Winners");	
+			api.setWidgetText(player, 205, 48, "EoC p2p Fullout - Wicked Fury<br>EoC p2p 20v20 - Wicked Fury<br>EoC f2p Fullout - Wicked Fury<br>EoC f2p 20v20 - Wicked Fury<br>Legacy p2p Fullout - Wicked Fury<br>Legacy p2p 20v20 - Wicked Fury<br>Legacy f2p Fullout - Titan's Revolution<br>Legacy f2p 20v20 - Wicked Fury<br>");
+			api.setWidgetText(player, 205, 53, "Skilling Winners");
+			api.setWidgetText(player, 205, 50, "2015 - Summit<br>2015 (Iron) - Ceecs Clan<br>2014 - Hola Amigos<br>2013 - Venimus<br>2012 - Skill Shock<br>2011 - Divination<br>2010 - Divination<br>2009 - Divination");
+			api.setWidgetText(player, 205, 54, "Combined Winners");
+			api.setWidgetText(player, 205, 51, "2013 - Venimus<br>2012 - Basedin2minutes<br>2011 - Family Unity Network<br>2010 - Basedin2minutes<br>2009 - Wicked Fury");
+			api.setWidgetText(player, 205, 55, "Current Winners");
+			api.setWidgetText(player, 205, 52, "The Victorious Winners of<br>the 2015 jagex Clan Cup<br> <br> Combat - Wicked Fury<br>Skilling - Summit<br>Iron Skilling - Ceecs Clan");
+			return true;
 			case 15468://Crate of hammers
 			if(api.itemTotal(player, Inv.BACKPACK, 2347)) {
 			mesbox(player, "You already have a hammer.", function () {
@@ -62,9 +73,9 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		    mesbox(player, "You need to be on a member's world to use this feature.", function () {	
 		    });
 		    } else {
-			// make sure varp is  api.setVarp(player, 114, 16384);  befor you can tele in
+			// make sure varbit is  api.setVarBit(player, 303, 1);  befor you can tele in
 		    api.teleportEntity(player, 3149, 9652, 0);
-		  //  api.setVarp(player, 114, 0); 
+		  //  api.setVarBit(player, 303, 0); 
 		    }
 	        return true;
 			case 91021://dark hole under tree
@@ -90,7 +101,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
+	var locs = [55301,15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);

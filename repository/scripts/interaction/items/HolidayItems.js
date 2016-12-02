@@ -7,6 +7,16 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 		if(event == EventType.OPHELD1) {
 		switch (objTypeId) {
+		case 19832://Bone brooch
+		api.runAnimation(player, 14870);
+        api.setSpotAnim(player, 1, 2838);
+		//player.getModel().setRender(Render.NPC);
+		//player.getModel().setNPCId(49);
+		//	player.getModel().refresh();
+		//api.runAnimation(player, 14884);
+		//interface 375
+		//component 11 for pic  8962
+		return;		
 		case 11950://Snow globe
 		api.openCentralWidget(player, 659, false);
 		return;	
@@ -163,7 +173,7 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 
 /* Listen to the item ids specified */
 var listen = function(scriptManager) {
-	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867,14742,22325,11950];
+	var ids = [ 7927,6722,4566,15353,4079,6865,6866,6867,14742,22325,11950,19832,28134];
 	var itemListener = new ItemListener();
 	for (var i in ids) {
 		scriptManager.registerListener(EventType.OPHELD1, ids[i], itemListener);

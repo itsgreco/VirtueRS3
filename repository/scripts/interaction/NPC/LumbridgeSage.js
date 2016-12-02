@@ -25,8 +25,8 @@ var LumbridgeSage = {
 			}, "Tell me about the town of Lumbridge.", function () {
 				LumbridgeSage.townofLumbridge(player, npc);
 			}, "I'm fine for now, thanks.", function () {
-			}, "mod room", function () {
-					api.teleportEntity(player, 2845, 5158, 0);
+			}, "I would like to access the P-Mod room.", function () {
+			    api.teleportEntity(player, 2845, 5158, 0);
 			});
 			return;
 		} 
