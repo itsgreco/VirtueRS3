@@ -12,6 +12,32 @@ var CooksAssistant = {
 				questLog.setJournalLine(player, 9, "<col=EB981F>I have also gained <col=EBE076>two prize keys<col=EB981F> for <col=EBE076>Treasure Hunter<col=EB981F>!");
 				questLog.setJournalLine(player, 10, "<col=EB981F>The cook now also lets me use his high-quality <col=EBE076>range<col=EB981F>, which burns certain low-");
 				questLog.setJournalLine(player, 11, "<col=EB981F>level dishes less often thsn other ranges.");
+			} else if(questApi.isStarted(player, 6)) {
+			if (api.getVarBit(player, 12206) == 1) { 
+		    var QualityMilk = "I have given the cook a bucket of top-quality milk.";
+		    } else {
+		    var QualityMilk = "<col=EB981F>I need to find a <col=EBE076>bucket of top-quality milk<col=EB981F>.";	
+		    }
+		    if (api.getVarBit(player, 12205) == 1) { 
+		    var LargeEgg = "I have given the cook a super large egg.";
+		    } else {
+		    var LargeEgg = "<col=EB981F>I need to find a <col=EBE076>super large egg<col=EB981F>.";	
+		    }
+	    	if (api.getVarBit(player, 12204) == 1) { 
+		    var FineFlour = "I have given the cook a pot of extra fine flour.";
+		    } else {
+		    var FineFlour = "<col=EB981F>I need to find a <col=EBE076>pot of extra fine flour<col=EB981F>.";	
+		    }
+				questLog.setJournalLine(player, 1, "");
+				questLog.setJournalLine(player, 2, "<col=EB981F>It's the <col=EBE076>Duke of Lumbridge's <col=EB981F>birthday and I have to help his <col=EBE076>cook<col=EB981F> make him a");
+			    questLog.setJournalLine(player, 3, "birthday cake. <col=EB981F>To do this I need to bring the cook the following ingredients:");
+				questLog.setJournalLine(player, 4, "");
+				questLog.setJournalLine(player, 5, QualityMilk);
+				questLog.setJournalLine(player, 6, FineFlour);
+				questLog.setJournalLine(player, 7, LargeEgg);
+				questLog.setJournalLine(player, 8, "");
+				questLog.setJournalLine(player, 9, "<col=EB981F>According to the <col=EBE076>cook<col=EB981F>, I can find the ingredients in the vicinty of <col=EBE076>Lumbridge<col=EB981F>, He");
+				questLog.setJournalLine(player, 10, "<col=EB981F>has noted certain possible locations of the ingredients on my world map.");
 			} else {
 				questLog.setJournalLine(player, 1, "");
 				questLog.setJournalLine(player, 2, "<col=EB981F>I can start this quest by speaking to the <col=EBE076>Cook<col=EB981F> in the <col=EBE076>kitchen<col=EB981F> of <col=EBE076>Lumbridge");
@@ -19,54 +45,3 @@ var CooksAssistant = {
 			}
 		}
 }
-
-
-
-var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
-	invoke : function (event, locTypeId, args) {
-		var player = args.player;
-		var location = args.location;
-		
-		switch (locTypeId) {	
-		case 47721:
-			if(questApi.isStarted(player, 6) && !questApi.isFinished(player, 6)) {	
-				if(api.itemTotal(player, Inv.BACKPACK, 15413)) {
-					if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
-						api.sendMessage(player, "You've already got some top-quality milk; you should take it to the cook.");
-					} else {
-						api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
-					}
-				} else {
-					if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
-						api.runAnimation(player, 2305);
-						//todo wait till end off anim then add items
-						api.delCarriedItem(player, 1925,1);
-						api.addCarriedItem(player, 15413,1);
-						api.sendMessage(player, "You milk the cow for top-quality milk.");
-					} else {
-						api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
-					}
-				}
-			} else {	
-				if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
-					mesbox(player, "If you're after ordinary milk, you should use an ordinary dairy cow.");
-				} else {
-					api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
-				}			
-			}
-			return;
-		default:
-			return;
-		}		
-	}
-});
-
-/* Listen to the npc ids specified */
-var listen = function(scriptManager) {
-	
-	var locs = [47721];
-	var listener = new LocationListener();
-	for (var i in locs) {
-		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);
-	}
-};

@@ -75,7 +75,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		    } else {
 			// make sure varbit is  api.setVarBit(player, 303, 1);  befor you can tele in
 		    api.teleportEntity(player, 3149, 9652, 0);
-		  //  api.setVarBit(player, 303, 0); 
+		    // api.setVarBit(player, 303, 0); 
 		    }
 	        return true;
 			case 91021://dark hole under tree
@@ -93,6 +93,44 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 		   //what it will do here
 		    }
 	        return true;
+			case 47721:// Prized dairy cow (Quest Cook's Assistant)
+			if(questApi.isStarted(player, 6) && !questApi.isFinished(player, 6)) {	
+			if(api.itemTotal(player, Inv.BACKPACK, 15413)) {
+			if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
+			api.sendMessage(player, "You've already got some top-quality milk; you should take it to the cook.");
+			} else {
+			api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
+			}
+			} else {
+			if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
+			api.runAnimation(player, 2305, function () {	
+			api.delCarriedItem(player, 1925,1);
+			api.addCarriedItem(player, 15413,1);
+			api.sendMessage(player, "You milk the cow for top-quality milk.");
+			});
+			} else {
+			api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
+			}
+			}
+			} else {	
+			if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
+			mesbox(player, "If you're after ordinary milk, you should use an ordinary dairy cow.");
+			} else {
+			api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
+			}			
+			}
+			return;
+			case 8689://dairy cow
+			if(api.itemTotal(player, Inv.BACKPACK, 1925)) {
+			api.runAnimation(player, 2305, function () {	
+			api.delCarriedItem(player, 1925,1);
+			api.addCarriedItem(player, 1927,1);
+			api.sendMessage(player, "You milk the cow.");
+			});
+			} else {
+			api.sendMessage(player, "You'll need an empty bucket to collect the milk.");
+			}
+            return;
 			default:
 			return false;
 		}		
@@ -101,7 +139,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [55301,15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
+	var locs = [8689,47721,55301,15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);

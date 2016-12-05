@@ -8,14 +8,15 @@ var ItemListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Eve
 		if(event == EventType.OPHELD1) {
 		switch (objTypeId) {
 		case 19832://Bone brooch
-		api.runAnimation(player, 14870);
-        api.setSpotAnim(player, 1, 2838);
-		//player.getModel().setRender(Render.NPC);
-		//player.getModel().setNPCId(49);
-		//	player.getModel().refresh();
-		//api.runAnimation(player, 14884);
-		//interface 375
-		//component 11 for pic  8962
+		api.setSpotAnim(player, 1, 2838);
+		api.runAnimation(player, 14870, function () {
+		player.getModel().setRender(Render.NPC);
+		player.getModel().setNPCId(12373);
+		player.getModel().refresh();
+		api.setRenderAnim(player, 520);// looks like it works
+		});
+		api.setVarc(player, 1727, 1);
+		api.openOverlaySub(player, 1008, 375, false);
 		return;		
 		case 11950://Snow globe
 		api.openCentralWidget(player, 659, false);

@@ -32,17 +32,6 @@ var BankBoothListener = Java.extend(Java.type('org.virtue.engine.script.listener
 	}
 });
 
-var BankerListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
-	invoke : function (event, npcTypeId, args) {
-		var player = args.player;
-		if (event == EventType.OPNPC1) {
-			api.openOverlaySub(player, 1017, 762, false);
-		} else if (event == EventType.OPNPC4) {
-			api.openCentralWidget(player, 109, false);
-		}		
-	}
-});
-
 /* Listen to the game nodes specified */
 var listen = function(scriptManager) {
 	var locs = [12308, 2213, 782, 11758, 34752, 83634, 10517, 29085, 42192, 14369, 20607, 42217, 79036 ];
@@ -53,14 +42,7 @@ var listen = function(scriptManager) {
 		scriptManager.registerListener(EventType.OPLOC3, locs[i], listener);
 		scriptManager.registerListener(EventType.OPLOC4, locs[i], listener);
 	}
-	
-	var npcs = [ 494, 495, 496, 497, 498, 499, 2718, 3416, 4907 ];
-	var bankerListener = new BankerListener();
-	for (var i in npcs) {
-		//Binds option one and four on all bankers to this listener
-		scriptManager.registerListener(EventType.OPNPC1, npcs[i], bankerListener);
-		scriptManager.registerListener(EventType.OPNPC4, npcs[i], bankerListener);
-	}
+
 };
 
 var Bank = {

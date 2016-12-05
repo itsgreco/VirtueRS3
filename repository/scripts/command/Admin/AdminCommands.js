@@ -133,7 +133,7 @@ var EventListener = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 				return false;
 			}
 			var animID = parseInt(args[0]);
-			player.getModel().setRenderAnimation(animID);
+			api.setRenderAnim(player, animID);
 			player.getModel().refresh();
 			return;
 		case "render":
