@@ -64,6 +64,10 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 	     	});
 			} 
 	        return true;
+			case 36974://take-hatchet
+			api.addCarriedItem(player, 1351,1);
+			api.transformLoc(location, 36975, 540);//3min respawn
+			return true;
 			case 47713://Rocks (Quest The Restless Ghost)
 			mesbox(player, "There's nothing there of any use to you.", function () {
 			});
@@ -139,7 +143,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [8689,47721,55301,15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
+	var locs = [36974,8689,47721,55301,15468,47713,86431,91021,2409,69776,69778,69780,69782,69783,69784,69785,69786,69787,69788,69789,69790,69791];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);

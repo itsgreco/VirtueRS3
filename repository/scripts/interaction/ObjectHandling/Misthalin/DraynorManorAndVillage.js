@@ -29,7 +29,14 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 			api.teleportEntity(player, 3107, 3310, 0);
 			});	 
 	        return true;
-	
+	        case 47424: 
+			chatplayer(player,"NEUTRAL", "There's a sign on the door that says:", function () {
+			mesbox(player,"Adventurers beware: Going in doesn't mean you'll come out again.", function () {
+				//varp 2170	from 67108864 to 67108992
+				//or varp 20
+			});
+			});
+	        return true;  
 	//dog kennel 
 	//varp 3468   1246925975 all blue draynor
 	
@@ -46,7 +53,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [75852,96780,96781,96782,96783,5116];
+	var locs = [75852,96780,96781,96782,96783,5116,47424];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC1, locs[i], listener);

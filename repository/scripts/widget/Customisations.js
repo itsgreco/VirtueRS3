@@ -39,7 +39,7 @@ var CustomisationOpenListener = Java.extend(Java.type('org.virtue.engine.script.
 		//api.hideWidget(player, 1311, 448, false);//shows apply button
 	}
 });
-
+//api.sendMessage(player, "<col=a74114>You have unlocked new items through the store. Check your customisation interface for more details.");
 var CustomisationButtonListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, binding, args) {
 		var player = args.player;
@@ -50,16 +50,19 @@ var CustomisationButtonListener = Java.extend(Java.type('org.virtue.engine.scrip
 		var enabled = api.getVarBit(player, 678) == 1;
 		api.setVarBit(player, 678, enabled ? 0 : 1);
 		return true;
-		case 454://Apply
-			Customisation.applyCustomStyles(player);
-			return true;
-		case 1:
-		case 2:
-		case 4:
-		case 5:
-			return false;
-		case 216://Set colour
-			return Customisation.setHairColour(player, slot, option);
+		case 454: //Apply button
+        var tab = api.getVarBit(player, 29607);
+        api.sendMessage(player, tab);
+        switch (tab) {
+        case 1:
+        Customisation.applyCustomStyles(player);
+        break;
+        case 2:
+        break;
+        }
+        return true;
+		//case 216://Set colour
+		//	return Customisation.setHairColour(player, slot, option);
 		//case 138://Select option
 		default:
 			var handled = Customisation.processOption(player, component, slot, option);

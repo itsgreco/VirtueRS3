@@ -431,43 +431,13 @@ var OpHeldListner = Java.extend(Java.type('org.virtue.engine.script.listeners.Ev
 var listen = function(scriptManager) {
 	Crafting.initMaterialLookup();
 	Crafting.initProductLookup();
-	
+	var items = [24374,2509,2507,2505,1745,1741,1743,25551,25549,25547,25545,6289,1625,1627,1629,
+	1623,1621,1619,1617,1631,6571,31853,1607,2861,1611,1613,1605,1603,1601,1615,6573,31855];
 	var opHeldListener = new OpHeldListner();
 	var opHeldUseListener = new OpHeldUseListener();
-	
-	scriptManager.registerListener(EventType.OPHELD1, 24374, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 2509, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 2507, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 2505, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1745, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1741, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1743, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 25551, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 25549, opHeldListener);//batwing
-	scriptManager.registerListener(EventType.OPHELD1, 25547, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 25545, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 6289, opHeldListener);//
-	
-	scriptManager.registerListener(EventType.OPHELD1, 1625, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1627, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1629, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1623, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1621, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1619, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1617, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1631, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 6571, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 31853, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1607, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 2861, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1611, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1613, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1605, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1603, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1601, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 1615, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 6573, opHeldListener);//
-	scriptManager.registerListener(EventType.OPHELD1, 31855, opHeldListener);//
+	for (var i in items) {
+	scriptManager.registerListener(EventType.OPHELD1, items[i], opHeldListener);//
+	}
 	
 };
 
@@ -532,10 +502,7 @@ var Crafting = {
 			addMaterial(1615, 6961, this.MaterialType.GEMS);//
 			addMaterial(6573, 6961, this.MaterialType.GEMS);//
 			addMaterial(31855, 6961, this.MaterialType.GEMS);//
-			addMaterial(2859, 6961, this.MaterialType.GEMS);//
-			
-			
-			
+			addMaterial(2859, 6961, this.MaterialType.GEMS);//		
 			
 		},
 		productLookup : {},

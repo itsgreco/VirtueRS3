@@ -25,7 +25,7 @@ var Listener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventLi
 	    });	
 		});	
 		} else if (event == EventType.OPNPC4) {
-		api.openCentralWidget(player, 109, false);	
+		api.openCentralWidget(player, 109, false);
 		} else if (event == EventType.OPNPC5) {
 		// open shop npc 958 Fadli
 		}	

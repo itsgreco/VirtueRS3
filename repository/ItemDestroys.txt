@@ -150,7 +150,7 @@
 6860 - You may get another from Diango in Draynor Village.
 6861 - You can obtain another jester scarf from Diango in the Draynor Market.
 6862 - You can obtain another hat from Diango in the Draynor Market.
-6863 - You can reclaim this item from the place you found it.
+6863 - You can obtain another scarf from Diango in the Draynor market.
 6865 - You can obtain another marionette in Diango's workshop by the trap door.
 6866 - You can obtain another marionette in Diango's workshop by the trap door.
 6867 - You can obtain another marionette in Diango's workshop by the trap door.
@@ -3135,40 +3135,40 @@
 23660 - You cannot get a replacement for this tome.Read it to get your reward; it will be destroyed in the process.
 23661 - You can get another one from Diango.
 23662 - You can get another one from Diango.
-23665 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23666 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23667 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23668 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23669 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23670 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23671 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23672 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23673 - Are you sure you want to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23674 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23675 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23676 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23677 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23678 - Are you sure you wish to destroy your Squeal prize? You can reclaim it from Diango in Draynor.
-23679 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23681 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23682 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23684 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23685 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23686 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23687 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23688 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23689 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23690 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23691 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23692 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23693 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23694 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23695 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23696 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23697 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23698 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23699 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
-23700 - Are you sure you want to destroy your Squeal prize? You cannot reclaim it.
+23665 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23666 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23667 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23668 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23669 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23670 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23671 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23672 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23673 - Are you sure you want to destroy your prize? You can reclaim it from Diango in Draynor.
+23674 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23675 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23676 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23677 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23678 - Are you sure you wish to destroy your prize? You can reclaim it from Diango in Draynor.
+23679 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23681 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23682 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23684 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23685 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23686 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23687 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23688 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23689 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23690 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23691 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23692 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23693 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23694 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23695 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23696 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23697 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23698 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23699 - Are you sure you want to destroy your prize? You cannot reclaim it.
+23700 - Are you sure you want to destroy your prize? You cannot reclaim it.
 23713 - Are you sure you want to destroy this lamp? You cannot reclaim it.
 23714 - Are you sure you want to destroy the lamp? You won't be able to get another one.
 23715 - Are you sure you want to destroy the lamp? You won't be able to get another one.

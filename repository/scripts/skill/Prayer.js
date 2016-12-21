@@ -91,7 +91,7 @@ var Bury = {
 	
 var PrayerListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, objTypeId, args) {
-		buryBones(args.player, objTypeId, args.slot);
+		Prayer.buryBones(args.player, objTypeId, args.slot);
 	}
 });
 

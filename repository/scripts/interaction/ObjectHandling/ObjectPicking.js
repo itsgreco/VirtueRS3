@@ -35,7 +35,12 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
         api.addCarriedItem(player, 1965, 1);
 		});
 		return true;
-		
+		case 3366://Onion
+		runAnimation(player, 827, function () {
+		api.transformLoc(location, -1, 60);
+        api.addCarriedItem(player, 1957, 1);
+		});
+		return true;
 		case 312://Potato
 		runAnimation(player, 827, function () {
 		api.transformLoc(location, -1, 60);
@@ -52,7 +57,7 @@ var LocationListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the location ids specified */
 var listen = function(scriptManager) {
-	var locs = [312,2646,67263,67264,67265,15506,15507,15508,1161];
+	var locs = [312,2646,67263,67264,67265,15506,15507,15508,1161,3366];
 	var listener = new LocationListener();
 	for (var i in locs) {
 		scriptManager.registerListener(EventType.OPLOC2, locs[i], listener);

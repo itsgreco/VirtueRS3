@@ -37,7 +37,7 @@ public class Constants {
 	/**
 	 * The Framework Name & Server Name
 	 */
-	public static final String FRAME_NAME = "Virtue";
+	public static final String FRAME_NAME = "RuneScape";
 	
 	/**
 	 * The Framework Version

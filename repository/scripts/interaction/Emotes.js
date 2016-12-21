@@ -459,10 +459,15 @@ var Emotes = {
 				api.runAnimation(player, 25325);
 				api.setSpotAnim(player, 1, 5293);
 				return;
-			//case 187:
-			//	return;
+			case 187:
+			    api.runAnimation(player, 26224);
+				//api.setSpotAnim(player, 1, 5305);
+				return;
+				
+				//ice skating 27854
 			case 196://15 year
-			api.sendMessage(player, "todo add.");
+			    api.runAnimation(player, 27975);
+			
 				return;		
 			default:
 				api.sendMessage(player, "Animation at slot "+slot+" has not been added yet.");
@@ -472,11 +477,7 @@ var Emotes = {
 		
 		runSkillcape : function (player) {
 			var item = api.getItem(player, Inv.EQUIPMENT, WearPos.CAPE);
-			switch (api.getId(item)) {
-			case 9813://Quest Cape
-				api.runAnimation(player, 4945);
-				api.setSpotAnim(player, 1, 816);
-				return;
+			switch (api.getId(item)) {		
 			case 9747://Attack Cape
 			case 9748:
 			case 10639:
@@ -621,16 +622,27 @@ var Emotes = {
 				api.runAnimation(player, 5158);
 				api.setSpotAnim(player, 1, 907);
 				return;
-			case 9813:
-			case 10662://Quest cape
-			case 36166://Quest master cape
-				api.runAnimation(player, 4945);
-				api.setSpotAnim(player, 1, 816);
-				return;
 			case 18508:
 			case 18509://Dungeoneering cape
 				api.runAnimation(player, 13190);
 				api.setSpotAnim(player, 1, 2442);
+				return;
+				case 36351:	
+			case 36352://Invention Cape
+			case 36353:
+			case 36354:
+			    api.runAnimation(player, 27988);
+			    api.setSpotAnim(player, 1, 6001);
+			    return;
+			case 36356://Invention Master Cape
+			     api.runAnimation(player, 27988);
+			     api.setSpotAnim(player, 1, 6002);
+			     return;
+		    case 9813:
+			case 10662://Quest cape
+			case 36166://Quest master cape
+				api.runAnimation(player, 4945);
+				api.setSpotAnim(player, 1, 816);
 				return;
 			case 24709://10yr. Vet Cape
 				api.runAnimation(player, 17118);
@@ -651,10 +663,7 @@ var Emotes = {
 			case 32152://Comp cape
 				this.runCompCape(player);
 				return;
-			case 36356://Invention Master Cape
-				api.runAnimation(player, 27988);
-				api.setSpotAnim(player, 1, 6001);
-				return;
+			
 			default:
 				api.sendMessage(player, "You need to be wearing a Skill Cape in order to perform this emote.");
 				return;

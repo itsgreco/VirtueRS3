@@ -1,4 +1,4 @@
-var WardsmanListener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
+var Listener = Java.extend(Java.type('org.virtue.engine.script.listeners.EventListener'), {
 	invoke : function (event, npcTypeId, args) {
 		var player = args.player;
 		var npc = args.npc;
@@ -20,6 +20,6 @@ var WardsmanListener = Java.extend(Java.type('org.virtue.engine.script.listeners
 
 /* Listen to the npc ids specified */
 var listen = function(scriptManager) {
-	var listener = new WardsmanListener();
+	var listener = new Listener();
 	scriptManager.registerListener(EventType.OPNPC1, 16186, listener);
 };
